@@ -1,3 +1,4 @@
+﻿/*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -26,4 +27,37 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
+using System;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+
+using ArrayFire.Interop;
+
+namespace ArrayFire
+{
+	public enum MatMulOp
+	{
+		None = af_mat_prop.AF_MAT_NONE,
+		Transpose = af_mat_prop.AF_MAT_TRANS,
+		ConjugateTranspose = af_mat_prop.AF_MAT_CTRANS
+	}
+
+	public struct Dim4
+	{
+		public readonly int D0, D1, D2, D3;
+		public Dim4(int d0, int d1, int d2, int d3)
+		{
+			D0 = d0;
+			D1 = d1;
+			D2 = d2;
+			D3 = d3;
+		}
+	}
+
+	public class ArrayFireException : Exception
+	{
+		public ArrayFireException(af_err message) : base(message.ToString()) { }
+	}
+}

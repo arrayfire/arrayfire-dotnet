@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -26,4 +27,47 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
+using System;
+using System.Collections.Generic;
+using System.Numerics;
+
+using ArrayFire.Interop;
+
+namespace ArrayFire
+{
+    internal static class Global // shared functionality
+    {
+        private static Dictionary<Type, af_dtype> dtypes;
+
+        static Global()
+        {
+            dtypes = new Dictionary<Type, af_dtype>();
+
+#if _
+    for (\w+)=(\w+) in
+            b8=bool c64=Complex f32=float f64=double s32=int s64=long u32=uint u64=ulong u8=byte
+    do
+            dtypes.Add(typeof($2), af_dtype.$1);
+#else
+            dtypes.Add(typeof(bool), af_dtype.b8);
+            dtypes.Add(typeof(Complex), af_dtype.c64);
+            dtypes.Add(typeof(float), af_dtype.f32);
+            dtypes.Add(typeof(double), af_dtype.f64);
+            dtypes.Add(typeof(int), af_dtype.s32);
+            dtypes.Add(typeof(long), af_dtype.s64);
+            dtypes.Add(typeof(uint), af_dtype.u32);
+            dtypes.Add(typeof(ulong), af_dtype.u64);
+            dtypes.Add(typeof(byte), af_dtype.u8);
+#endif
+        }
+
+        internal static af_dtype toDType<T>() { return dtypes[typeof(T)]; }
+
+        internal static void VERIFY(af_err err)
+        {
+            if (err != af_err.AF_SUCCESS) throw new ArrayFireException(err);
+        }
+    }
+}

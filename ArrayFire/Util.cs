@@ -1,3 +1,4 @@
+﻿/*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -26,4 +27,29 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
+using System;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+
+using ArrayFire.Interop;
+using static ArrayFire.Global;
+
+namespace ArrayFire
+{
+	public static class Util
+	{
+		#region Printing
+		public static void Print<T>(Array<T> arr)
+		{
+			VERIFY(af_util.af_print_array(arr._ptr));
+		}
+
+		public static void Print<T>(Array<T> arr, string name, int precision = 4)
+		{
+			VERIFY(af_util.af_print_array_gen(name, arr._ptr, precision));
+		}
+		#endregion
+	}
+}
