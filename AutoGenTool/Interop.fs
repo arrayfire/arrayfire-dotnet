@@ -65,7 +65,7 @@ module Interop =
                 // array inputs:
                 "const\s+af_array\s*\*\s*(?:const\s+)?(\w+)",   "[In] IntPtr[] array_$1";
                 "const\s+dim_t\s*\*\s*(?:const\s+)?(\w+)",      "[In] long[] dim_$1";
-                "const\s+void\s*\*\s*(?:const\s+)?(\w+)",       "[In] T[] $1"
+                "const\s+void\s*\*\s*(?:const\s+)?(\w+)",       "[In] T[_] $1"
                 "const\s+char\s*\*\s*(?:const\s+)?(\w+)",       "string $1";
                 // trivial-case inputs:
                 "(?:const\s+)?(\w+)\s+(\w+)",                   "$1 $2";
@@ -76,7 +76,7 @@ module Interop =
                 "af_array\s*\*\s*(\w+)",                        "out IntPtr array_$1";
                 "size_t\s*\*\s*(\w+)",                          "out UIntPtr size_$1";
                 // array outputs:
-                "void\s*\*\s*(\w+)",                            "[Out] T[] $1";
+                "void\s*\*\s*(\w+)",                            "[Out] T[_] $1";
                 "char\s*\*\s*(\w+)",                            "[Out] StringBuilder $1";
                 // trivial-case outputs:
                 "(\w+)\s*\*\s*(\w+)",                           "out $1 $2";
@@ -145,11 +145,11 @@ module Interop =
                 for api, pars in matches do
                     let unsupp = pars.Contains("???")
                     let versions =
-                        if not unsupp && pars.Contains("T[]") then
+                        if not unsupp && pars.Contains("T[_]") then
                             let add x y = y + x
                             [ "bool"; "Complex"; "float"; "double"; "int"; "long"; "uint"; "ulong"; "byte" ]
-                            |> listCartesian [ "[]"; "[,]" ]
-                            |> List.map (fun (x,y) -> pars.Replace("T[]", y + x))
+                            |> listCartesian [ "[]"; "[,]"; "[,,]"; "[,,,]" ]
+                            |> List.map (fun (x,y) -> pars.Replace("T[_]", y + x))
                         else [ pars ]
                     for vpars in versions do
                         if is1st then is1st <- false else cw <=- ""
