@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloWorld (CSharp)", "Exam
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "HelloWorld (FSharp)", "Examples\HelloWorld\FSharp\HelloWorld (FSharp).fsproj", "{55144E61-0740-4116-8F43-A45F1A9909AB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{45CBAB24-008E-4178-A16A-9FBBE040CDBE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelloWorld", "HelloWorld", "{AC341C39-59B7-4A22-B5E2-DD396C0D44AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -30,5 +34,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3DDF07D8-2260-47D5-ABCF-2BF7B2818FAC} = {AC341C39-59B7-4A22-B5E2-DD396C0D44AE}
+		{55144E61-0740-4116-8F43-A45F1A9909AB} = {AC341C39-59B7-4A22-B5E2-DD396C0D44AE}
+		{AC341C39-59B7-4A22-B5E2-DD396C0D44AE} = {45CBAB24-008E-4178-A16A-9FBBE040CDBE}
 	EndGlobalSection
 EndGlobal
