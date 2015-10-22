@@ -40,14 +40,16 @@ namespace ArrayFire
 	public static class Util
 	{
 		#region Printing
-		public static void Print<T>(Array<T> arr)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void Print(Array arr)
 		{
-            Internal.VERIFY(af_util.af_print_array(arr._ptr));
+			Internal.VERIFY(af_util.af_print_array(arr._ptr));
 		}
 
-		public static void Print<T>(Array<T> arr, string name, int precision = 4)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void Print(Array arr, string name, int precision = 4)
 		{
-            Internal.VERIFY(af_util.af_print_array_gen(name, arr._ptr, precision));
+			Internal.VERIFY(af_util.af_print_array_gen(name, arr._ptr, precision));
 		}
 		#endregion
 	}

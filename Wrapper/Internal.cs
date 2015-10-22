@@ -30,44 +30,121 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 using System;
-using System.Collections.Generic;
 using System.Numerics;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 using ArrayFire.Interop;
 
 namespace ArrayFire
 {
-    internal static class Internal // shared functionality
-    {
-        private static Dictionary<Type, af_dtype> dtypes;
+	internal static class Internal // shared functionality
+	{
+		private static Dictionary<af_dtype, Type> dtype2clr;
+		private static Dictionary<Type, af_dtype> clr2dtype;
+		private static Dictionary<Type, Func<System.Array, IntPtr, af_err>>[] getdatafn;
 
-        static Internal()
-        {
-            dtypes = new Dictionary<Type, af_dtype>();
+		static Internal()
+		{
+			clr2dtype = new Dictionary<Type, af_dtype>();
+			dtype2clr = new Dictionary<af_dtype, Type>();
+			getdatafn = new Dictionary<Type, Func<System.Array, IntPtr, af_err>>[4];
+			for(int i = 0; i < getdatafn.Length; ++i) getdatafn[i] = new Dictionary<Type, Func<System.Array, IntPtr, af_err>>();
 
 #if _
-    for (\w+)=(\w+) in
-            b8=bool c64=Complex f32=float f64=double s32=int s64=long u32=uint u64=ulong u8=byte
-    do
-            dtypes.Add(typeof($2), af_dtype.$1);
+	for (\w+)=(\w+) in
+			b8=bool c64=Complex f32=float f64=double s32=int s64=long u32=uint u64=ulong u8=byte
+	do
+			dtype2clr.Add(af_dtype.$1, typeof($2));
+			clr2dtype.Add(typeof($2), af_dtype.$1);
+			getdatafn[0].Add(typeof($2), (data, ptr) => af_array.af_get_data_ptr(($2[])data, ptr));
+			getdatafn[1].Add(typeof($2), (data, ptr) => af_array.af_get_data_ptr(($2[,])data, ptr));
+			getdatafn[2].Add(typeof($2), (data, ptr) => af_array.af_get_data_ptr(($2[,,])data, ptr));
+			getdatafn[3].Add(typeof($2), (data, ptr) => af_array.af_get_data_ptr(($2[,,,])data, ptr));
 #else
-            dtypes.Add(typeof(bool), af_dtype.b8);
-            dtypes.Add(typeof(Complex), af_dtype.c64);
-            dtypes.Add(typeof(float), af_dtype.f32);
-            dtypes.Add(typeof(double), af_dtype.f64);
-            dtypes.Add(typeof(int), af_dtype.s32);
-            dtypes.Add(typeof(long), af_dtype.s64);
-            dtypes.Add(typeof(uint), af_dtype.u32);
-            dtypes.Add(typeof(ulong), af_dtype.u64);
-            dtypes.Add(typeof(byte), af_dtype.u8);
+			dtype2clr.Add(af_dtype.b8, typeof(bool));
+			clr2dtype.Add(typeof(bool), af_dtype.b8);
+			getdatafn[0].Add(typeof(bool), (data, ptr) => af_array.af_get_data_ptr((bool[])data, ptr));
+			getdatafn[1].Add(typeof(bool), (data, ptr) => af_array.af_get_data_ptr((bool[,])data, ptr));
+			getdatafn[2].Add(typeof(bool), (data, ptr) => af_array.af_get_data_ptr((bool[,,])data, ptr));
+			getdatafn[3].Add(typeof(bool), (data, ptr) => af_array.af_get_data_ptr((bool[,,,])data, ptr));
+
+			dtype2clr.Add(af_dtype.c64, typeof(Complex));
+			clr2dtype.Add(typeof(Complex), af_dtype.c64);
+			getdatafn[0].Add(typeof(Complex), (data, ptr) => af_array.af_get_data_ptr((Complex[])data, ptr));
+			getdatafn[1].Add(typeof(Complex), (data, ptr) => af_array.af_get_data_ptr((Complex[,])data, ptr));
+			getdatafn[2].Add(typeof(Complex), (data, ptr) => af_array.af_get_data_ptr((Complex[,,])data, ptr));
+			getdatafn[3].Add(typeof(Complex), (data, ptr) => af_array.af_get_data_ptr((Complex[,,,])data, ptr));
+
+			dtype2clr.Add(af_dtype.f32, typeof(float));
+			clr2dtype.Add(typeof(float), af_dtype.f32);
+			getdatafn[0].Add(typeof(float), (data, ptr) => af_array.af_get_data_ptr((float[])data, ptr));
+			getdatafn[1].Add(typeof(float), (data, ptr) => af_array.af_get_data_ptr((float[,])data, ptr));
+			getdatafn[2].Add(typeof(float), (data, ptr) => af_array.af_get_data_ptr((float[,,])data, ptr));
+			getdatafn[3].Add(typeof(float), (data, ptr) => af_array.af_get_data_ptr((float[,,,])data, ptr));
+
+			dtype2clr.Add(af_dtype.f64, typeof(double));
+			clr2dtype.Add(typeof(double), af_dtype.f64);
+			getdatafn[0].Add(typeof(double), (data, ptr) => af_array.af_get_data_ptr((double[])data, ptr));
+			getdatafn[1].Add(typeof(double), (data, ptr) => af_array.af_get_data_ptr((double[,])data, ptr));
+			getdatafn[2].Add(typeof(double), (data, ptr) => af_array.af_get_data_ptr((double[,,])data, ptr));
+			getdatafn[3].Add(typeof(double), (data, ptr) => af_array.af_get_data_ptr((double[,,,])data, ptr));
+
+			dtype2clr.Add(af_dtype.s32, typeof(int));
+			clr2dtype.Add(typeof(int), af_dtype.s32);
+			getdatafn[0].Add(typeof(int), (data, ptr) => af_array.af_get_data_ptr((int[])data, ptr));
+			getdatafn[1].Add(typeof(int), (data, ptr) => af_array.af_get_data_ptr((int[,])data, ptr));
+			getdatafn[2].Add(typeof(int), (data, ptr) => af_array.af_get_data_ptr((int[,,])data, ptr));
+			getdatafn[3].Add(typeof(int), (data, ptr) => af_array.af_get_data_ptr((int[,,,])data, ptr));
+
+			dtype2clr.Add(af_dtype.s64, typeof(long));
+			clr2dtype.Add(typeof(long), af_dtype.s64);
+			getdatafn[0].Add(typeof(long), (data, ptr) => af_array.af_get_data_ptr((long[])data, ptr));
+			getdatafn[1].Add(typeof(long), (data, ptr) => af_array.af_get_data_ptr((long[,])data, ptr));
+			getdatafn[2].Add(typeof(long), (data, ptr) => af_array.af_get_data_ptr((long[,,])data, ptr));
+			getdatafn[3].Add(typeof(long), (data, ptr) => af_array.af_get_data_ptr((long[,,,])data, ptr));
+
+			dtype2clr.Add(af_dtype.u32, typeof(uint));
+			clr2dtype.Add(typeof(uint), af_dtype.u32);
+			getdatafn[0].Add(typeof(uint), (data, ptr) => af_array.af_get_data_ptr((uint[])data, ptr));
+			getdatafn[1].Add(typeof(uint), (data, ptr) => af_array.af_get_data_ptr((uint[,])data, ptr));
+			getdatafn[2].Add(typeof(uint), (data, ptr) => af_array.af_get_data_ptr((uint[,,])data, ptr));
+			getdatafn[3].Add(typeof(uint), (data, ptr) => af_array.af_get_data_ptr((uint[,,,])data, ptr));
+
+			dtype2clr.Add(af_dtype.u64, typeof(ulong));
+			clr2dtype.Add(typeof(ulong), af_dtype.u64);
+			getdatafn[0].Add(typeof(ulong), (data, ptr) => af_array.af_get_data_ptr((ulong[])data, ptr));
+			getdatafn[1].Add(typeof(ulong), (data, ptr) => af_array.af_get_data_ptr((ulong[,])data, ptr));
+			getdatafn[2].Add(typeof(ulong), (data, ptr) => af_array.af_get_data_ptr((ulong[,,])data, ptr));
+			getdatafn[3].Add(typeof(ulong), (data, ptr) => af_array.af_get_data_ptr((ulong[,,,])data, ptr));
+
+			dtype2clr.Add(af_dtype.u8, typeof(byte));
+			clr2dtype.Add(typeof(byte), af_dtype.u8);
+			getdatafn[0].Add(typeof(byte), (data, ptr) => af_array.af_get_data_ptr((byte[])data, ptr));
+			getdatafn[1].Add(typeof(byte), (data, ptr) => af_array.af_get_data_ptr((byte[,])data, ptr));
+			getdatafn[2].Add(typeof(byte), (data, ptr) => af_array.af_get_data_ptr((byte[,,])data, ptr));
+			getdatafn[3].Add(typeof(byte), (data, ptr) => af_array.af_get_data_ptr((byte[,,,])data, ptr));
 #endif
-        }
+		}
 
-        internal static af_dtype toDType<T>() { return dtypes[typeof(T)]; }
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static af_dtype toDType<T>() { return clr2dtype[typeof(T)]; }
 
-        internal static void VERIFY(af_err err)
-        {
-            if (err != af_err.AF_SUCCESS) throw new ArrayFireException(err);
-        }
-    }
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static Type toClrType(af_dtype dtype) { return dtype2clr[dtype]; }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static af_err getData<T>(System.Array arr, IntPtr ptr)
+		{
+			// lookup time was experimentally found to be negligible (<1%) compared to
+			// the time the actual copy operation takes, even for small arrays
+			return getdatafn[arr.Rank - 1][typeof(T)](arr, ptr);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static void VERIFY(af_err err)
+		{
+			if (err != af_err.AF_SUCCESS) throw new ArrayFireException(err);
+		}
+	}
 }

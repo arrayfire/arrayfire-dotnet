@@ -37,7 +37,6 @@
   <ItemGroup>
     <Compile Include="Arith.cs" />
     <Compile Include="Array.cs" />
-    <Compile Include="Internal\GCMan.cs" />
     <Compile Include="Interop\af_device.cs" />
     <Compile Include="Tiny.cs" />
     <Compile Include="Interop\af_algorithm.cs" />
