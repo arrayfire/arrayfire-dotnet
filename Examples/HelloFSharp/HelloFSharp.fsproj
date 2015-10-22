@@ -25,7 +25,7 @@
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ArrayFire\ArrayFire.csproj">
+    <ProjectReference Include="..\..\Wrapper\ArrayFire.csproj">
       <Name>ArrayFire</Name>
       <Project>{c5f2b49f-6e49-4f37-b8fc-a70c9a061108}</Project>
       <Private>True</Private>
