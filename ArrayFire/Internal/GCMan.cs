@@ -34,7 +34,7 @@ using System.Threading;
 
 using ArrayFire.Interop;
 
-using static ArrayFire.Global;
+using static ArrayFire.Internal;
 
 namespace ArrayFire
 {

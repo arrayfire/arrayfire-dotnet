@@ -34,7 +34,6 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 
 using ArrayFire.Interop;
-using static ArrayFire.Global;
 
 namespace ArrayFire
 {
@@ -44,47 +43,47 @@ namespace ArrayFire
 		public static Array<T> Multiply<T>(Array<T> lhs, Array<T> rhs, MatMulOp lop = MatMulOp.None, MatMulOp rop = MatMulOp.None)
 		{
 			IntPtr ptr;
-			VERIFY(af_blas.af_matmul(out ptr, lhs._ptr, rhs._ptr, (af_mat_prop)lop, (af_mat_prop)rop));
+            Internal.VERIFY(af_blas.af_matmul(out ptr, lhs._ptr, rhs._ptr, (af_mat_prop)lop, (af_mat_prop)rop));
 			return new Array<T>(ptr);
 		}
 
 		public static void TransposeInPlace<T>(Array<T> arr, bool conjugate)
 		{
-			VERIFY(af_blas.af_transpose_inplace(arr._ptr, conjugate));
+            Internal.VERIFY(af_blas.af_transpose_inplace(arr._ptr, conjugate));
 		}
 
 		public static Array<T> Transpose<T>(Array<T> arr, bool conjugate)
 		{
 			IntPtr ptr;
-			VERIFY(af_blas.af_transpose(out ptr, arr._ptr, conjugate));
+            Internal.VERIFY(af_blas.af_transpose(out ptr, arr._ptr, conjugate));
 			return new Array<T>(ptr);
 		}
 
 		public static double Det(Array<double> arr)
 		{
 			double r, i;
-			VERIFY(af_lapack.af_det(out r, out i, arr._ptr));
+            Internal.VERIFY(af_lapack.af_det(out r, out i, arr._ptr));
 			return r;
 		}
 
 		public static float Det(Array<float> arr)
 		{
 			double r, i;
-			VERIFY(af_lapack.af_det(out r, out i, arr._ptr));
+            Internal.VERIFY(af_lapack.af_det(out r, out i, arr._ptr));
 			return (float)r;
 		}
 
 		public static Complex Det(Array<Complex> arr)
 		{
 			double r, i;
-			VERIFY(af_lapack.af_det(out r, out i, arr._ptr));
+            Internal.VERIFY(af_lapack.af_det(out r, out i, arr._ptr));
 			return new Complex(r, i);
 		}
 
 		public static Array<T> Inverse<T>(Array<T> arr)
 		{
 			IntPtr ptr;
-			VERIFY(af_lapack.af_inverse(out ptr, arr._ptr, af_mat_prop.AF_MAT_NONE));
+            Internal.VERIFY(af_lapack.af_inverse(out ptr, arr._ptr, af_mat_prop.AF_MAT_NONE));
 			return new Array<T>(ptr);
 		}
 	}

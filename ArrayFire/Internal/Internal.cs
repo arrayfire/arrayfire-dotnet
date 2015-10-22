@@ -37,11 +37,11 @@ using ArrayFire.Interop;
 
 namespace ArrayFire
 {
-    internal static class Global // shared functionality
+    internal static class Internal // shared functionality
     {
         private static Dictionary<Type, af_dtype> dtypes;
 
-        static Global()
+        static Internal()
         {
             dtypes = new Dictionary<Type, af_dtype>();
 

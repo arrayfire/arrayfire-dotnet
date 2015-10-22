@@ -34,7 +34,6 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 
 using ArrayFire.Interop;
-using static ArrayFire.Global;
 
 namespace ArrayFire
 {
@@ -43,12 +42,12 @@ namespace ArrayFire
 		#region Printing
 		public static void Print<T>(Array<T> arr)
 		{
-			VERIFY(af_util.af_print_array(arr._ptr));
+            Internal.VERIFY(af_util.af_print_array(arr._ptr));
 		}
 
 		public static void Print<T>(Array<T> arr, string name, int precision = 4)
 		{
-			VERIFY(af_util.af_print_array_gen(name, arr._ptr, precision));
+            Internal.VERIFY(af_util.af_print_array_gen(name, arr._ptr, precision));
 		}
 		#endregion
 	}
