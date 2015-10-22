@@ -45,10 +45,10 @@ namespace ArrayFire
 		b8=bool c64=Complex f32=float f64=double s32=int s64=long u32=uint u64=ulong u8=byte
 	do
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<$2> CreateArray($2[] data) { IntPtr ptr; Global.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array<$2>(ptr); }
+		public static Array<$2> CreateArray($2[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array<$2>(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<$2> CreateArray($2[,] data) { IntPtr ptr; Global.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array<$2>(ptr); }
+		public static Array<$2> CreateArray($2[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array<$2>(ptr); }
 #else
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Array<bool> CreateArray(bool[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.b8)); return new Array<bool>(ptr); }
@@ -116,7 +116,7 @@ namespace ArrayFire
 		public static Array<T> Rand$2<T>(long[] dims)
 		{
 			IntPtr ptr;
-			Global.VERIFY(af_data.af_rand$1(out ptr, (uint)dims.Length, dims, Global.toDType<T>()));
+			Internal.VERIFY(af_data.af_rand$1(out ptr, (uint)dims.Length, dims, Internal.toDType<T>()));
 			return new Array<T>(ptr);
 		}
 
@@ -193,7 +193,7 @@ namespace ArrayFire
 		public static $2[] GetData(Array<$2> arr)
 		{
 			$2[] data = new $2[arr.ElemCount];
-			Global.VERIFY(af_array.af_get_data_ptr(data, arr._ptr));
+			Internal.VERIFY(af_array.af_get_data_ptr(data, arr._ptr));
 			return data;
 		}
 
@@ -203,7 +203,7 @@ namespace ArrayFire
 			Dim4 dims = arr.Dimensions;
 			if (dims.D2 * dims.D3 > 1) throw new NotSupportedException("This array has more than two dimensions");
 			$2[,] data = new $2[dims.D0, dims.D1];
-			Global.VERIFY(af_array.af_get_data_ptr(data, arr._ptr));
+			Internal.VERIFY(af_array.af_get_data_ptr(data, arr._ptr));
 			return data;
 		}
 #else

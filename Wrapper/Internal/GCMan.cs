@@ -34,8 +34,6 @@ using System.Threading;
 
 using ArrayFire.Interop;
 
-using static ArrayFire.Internal;
-
 namespace ArrayFire
 {
     internal static class GCMan // garbage collector manager (internal class)
@@ -48,7 +46,7 @@ namespace ArrayFire
             if(instances % 50 == 0) // only do it every time we allocated new 50 instances, we can tweak this
             {
                 UIntPtr bytes, buffers, lockbytes, lockbuffers;
-                VERIFY(af_device.af_device_mem_info(out bytes, out buffers, out lockbytes, out lockbuffers));
+                Internal.VERIFY(af_device.af_device_mem_info(out bytes, out buffers, out lockbytes, out lockbuffers));
                 // code borrowed from the R wrapper:
                 if ((double)lockbytes > Math.Pow(1000, 3) || (double)lockbuffers > 50) GC.Collect();
             }

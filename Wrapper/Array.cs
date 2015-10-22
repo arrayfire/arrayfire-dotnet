@@ -90,7 +90,7 @@ namespace ArrayFire
 	for (\w+) in
 		Empty Scalar Row Column Vector
 	do
-		public bool Is$1 { get { bool res; Global.VERIFY(af_array.af_is_$L1(out res, _ptr)); return res; } }
+		public bool Is$1 { get { bool res; Internal.VERIFY(af_array.af_is_$L1(out res, _ptr)); return res; } }
 #else
 		public bool IsEmpty { get { bool res; Internal.VERIFY(af_array.af_is_empty(out res, _ptr)); return res; } }
 		public bool IsScalar { get { bool res; Internal.VERIFY(af_array.af_is_scalar(out res, _ptr)); return res; } }
@@ -106,7 +106,7 @@ namespace ArrayFire
 		+add -sub *mul /div %mod &bitand |bitor ^bitxor
 	do
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> operator $1(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Global.VERIFY(af_arith.af_$2(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array<T> operator $1(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_$2(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
 #else
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Array<T> operator +(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_add(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
