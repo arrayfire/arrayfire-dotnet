@@ -55,7 +55,7 @@ namespace ArrayFire
 		Round Trunc Floor Ceil
 	do
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> $1<T>(Array<T> arr) { IntPtr ptr; Global.VERIFY(af_arith.af_$L1(out ptr, arr._ptr)); return new Array<T>(ptr); }
+		public static Array<T> $1<T>(Array<T> arr) { IntPtr ptr; Internal.VERIFY(af_arith.af_$L1(out ptr, arr._ptr)); return new Array<T>(ptr); }
 #else
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Array<T> Sin<T>(Array<T> arr) { IntPtr ptr; Internal.VERIFY(af_arith.af_sin(out ptr, arr._ptr)); return new Array<T>(ptr); }
@@ -159,7 +159,7 @@ namespace ArrayFire
 		Atan2 Rem Pow
 	do
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> $1<T>(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Global.VERIFY(af_arith.af_$L1(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array<T> $1<T>(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_$L1(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
 #else
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Array<T> Atan2<T>(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_atan2(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
