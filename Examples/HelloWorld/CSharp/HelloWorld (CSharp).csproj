@@ -5,14 +5,14 @@
     <ProjectGuid>{3DDF07D8-2260-47D5-ABCF-2BF7B2818FAC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HelloCSharp</RootNamespace>
-    <AssemblyName>HelloCSharp</AssemblyName>
+    <RootNamespace>HelloWorld.CSharp</RootNamespace>
+    <AssemblyName>HelloWorld.CSharp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -21,7 +21,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>..\bin\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
@@ -43,7 +43,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Wrapper\ArrayFire.csproj">
+    <ProjectReference Include="..\..\..\Wrapper\ArrayFire.csproj">
       <Project>{c5f2b49f-6e49-4f37-b8fc-a70c9a061108}</Project>
       <Name>ArrayFire</Name>
     </ProjectReference>
