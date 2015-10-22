@@ -5,12 +5,12 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>55144e61-0740-4116-8f43-a45f1a9909ab</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>HelloFSharp</RootNamespace>
-    <AssemblyName>HelloFSharp</AssemblyName>
+    <RootNamespace>HelloWorld.FSharp</RootNamespace>
+    <AssemblyName>HelloWorld.FSharp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
-    <Name>HelloFSharp</Name>
+    <Name>HelloWorld (FSharp)</Name>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -25,7 +25,7 @@
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Wrapper\ArrayFire.csproj">
+    <ProjectReference Include="..\..\..\Wrapper\ArrayFire.csproj">
       <Name>ArrayFire</Name>
       <Project>{c5f2b49f-6e49-4f37-b8fc-a70c9a061108}</Project>
       <Private>True</Private>
@@ -39,7 +39,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <Tailcalls>false</Tailcalls>
-    <OutputPath>..\bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>
@@ -51,7 +51,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <Tailcalls>true</Tailcalls>
-    <OutputPath>..\bin\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
     <DocumentationFile>

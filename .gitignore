@@ -1,7 +1,9 @@
-Examples/HelloFSharp/obj/
-Examples/HelloCSharp/obj/
 Wrapper/obj/
+Wrapper/bin/
 AutoGenTool/bin/
 AutoGenTool/obj/
-Examples/bin/
-Wrapper/bin/
+Examples/HelloWorld/CSharp/bin/
+Examples/HelloWorld/CSharp/obj/
+Examples/HelloWorld/FSharp/bin/
+Examples/HelloWorld/FSharp/obj/
+
