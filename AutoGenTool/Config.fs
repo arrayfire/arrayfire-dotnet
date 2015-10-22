@@ -43,6 +43,6 @@ module Config =
     let SKIP_INCLUDES = ["compatible"; "cuda"; "features"; "graphics"; "image"; "index"; "opencl"; "vision" ]
 
     // path to the ArrayFire library source code (relative to this project's bin/Debug or bin/Release folders)
-    let OUTPUT_DIR = "../../../ArrayFire"
+    let OUTPUT_DIR = "../../../Wrapper"
 
     let DLL_NAME = "afcpu" // this wont matter when the unified backend is ready with ArrayFire 3.2
