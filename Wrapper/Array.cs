@@ -37,29 +37,35 @@ using ArrayFire.Interop;
 
 namespace ArrayFire
 {
-	public class Array<T> : Arith, IDisposable // we inherit from Arith so the operations in F# Core.Operators module work correctly (e.g. sin, cos, abs)
+	public class Array : Arith, IDisposable // we inherit from Arith so the operations in F# Core.Operators module work correctly (e.g. sin, cos, abs)
 	{
+		private static int _instances = 0;
+
 		internal IntPtr _ptr;
 
 		internal Array(IntPtr pointer)
 		{
 #if DEBUG
 			if (pointer == IntPtr.Zero) throw new ArgumentNullException("Invalid Array Pointer");
-			af_dtype type;
-            Internal.VERIFY(af_array.af_get_type(out type, pointer));
-			if(type != Internal.toDType<T>()) throw new ArrayTypeMismatchException("Type mismatch: trying to wrap a " + type.ToString() + " into an Array<" + typeof(T).ToString() + ">");
 #endif
 			this._ptr = pointer;
-			GCMan.OnAlloc();
+			Interlocked.Increment(ref _instances);
+			if (_instances % 50 == 0) // only do it every time we allocated new 50 instances, we can tweak this
+			{
+				UIntPtr bytes, buffers, lockbytes, lockbuffers;
+				Internal.VERIFY(af_device.af_device_mem_info(out bytes, out buffers, out lockbytes, out lockbuffers));
+				// code borrowed from the R wrapper:
+				if ((double)lockbytes > Math.Pow(1000, 3) || (double)lockbuffers > 50) GC.Collect();
+			}
 		}
 
-		#region Sizes and Dimensions
+		#region Sizes, Dimensions, Type
 		public int DimCount
 		{
 			get
 			{
 				uint res;
-                Internal.VERIFY(af_array.af_get_numdims(out res, _ptr));
+				Internal.VERIFY(af_array.af_get_numdims(out res, _ptr));
 				return (int)res;
 			}
 		}
@@ -69,7 +75,7 @@ namespace ArrayFire
 			get
 			{
 				long res;
-                Internal.VERIFY(af_array.af_get_elements(out res, _ptr));
+				Internal.VERIFY(af_array.af_get_elements(out res, _ptr));
 				return (int)res;
 			}
 		}
@@ -79,13 +85,23 @@ namespace ArrayFire
 			get
 			{
 				long d0, d1, d2, d3;
-                Internal.VERIFY(af_array.af_get_dims(out d0, out d1, out d2, out d3, _ptr));
+				Internal.VERIFY(af_array.af_get_dims(out d0, out d1, out d2, out d3, _ptr));
 				return new Dim4((int)d0, (int)d1, (int)d2, (int)d3);
 			}
 		}
-        #endregion
 
-        #region Is___ Properties
+		public Type ElemType
+		{
+			get
+			{
+				af_dtype dtype;
+				Internal.VERIFY(af_array.af_get_type(out dtype, _ptr));
+				return Internal.toClrType(dtype);
+			}
+		}
+		#endregion
+
+		#region Is___ Properties
 #if _
 	for (\w+) in
 		Empty Scalar Row Column Vector
@@ -98,49 +114,40 @@ namespace ArrayFire
 		public bool IsColumn { get { bool res; Internal.VERIFY(af_array.af_is_column(out res, _ptr)); return res; } }
 		public bool IsVector { get { bool res; Internal.VERIFY(af_array.af_is_vector(out res, _ptr)); return res; } }
 #endif
-        #endregion
+		#endregion
 
-        #region Operators
+		#region Operators
 #if _
 	for (\W)(\w+) in
 		+add -sub *mul /div %mod &bitand |bitor ^bitxor
 	do
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> operator $1(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_$2(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array operator $1(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_$2(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 #else
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> operator +(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_add(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array operator +(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_add(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> operator -(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_sub(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array operator -(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_sub(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> operator *(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_mul(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array operator *(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_mul(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> operator /(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_div(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array operator /(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_div(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> operator %(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_mod(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array operator %(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_mod(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> operator &(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_bitand(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array operator &(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_bitand(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> operator |(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_bitor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array operator |(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_bitor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array<T> operator ^(Array<T> lhs, Array<T> rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_bitxor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array<T>(ptr); }
+		public static Array operator ^(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_bitxor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 #endif
-		#endregion
-
-		#region Casting
-		public Array<X> Cast<X>()
-		{
-			IntPtr ptr;
-            Internal.VERIFY(af_arith.af_cast(out ptr, _ptr, Internal.toDType<X>()));
-			return new Array<X>(ptr);
-		}
 		#endregion
 
 		#region IDisposable Support
@@ -150,7 +157,7 @@ namespace ArrayFire
 			{
 				af_array.af_release_array(_ptr);
 				_ptr = IntPtr.Zero;
-				GCMan.OnRelease();
+				Interlocked.Decrement(ref _instances);
 			}
 			if (disposing) GC.SuppressFinalize(this);
 		}

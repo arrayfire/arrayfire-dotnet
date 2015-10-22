@@ -39,20 +39,22 @@ namespace ArrayFire
 {
 	public static class Vector
 	{
-		public static double SumAll(Array<double> arr)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Complex SumAll(Array arr)
 		{
 			double r, i;
 			Internal.VERIFY(af_algorithm.af_sum_all(out r, out i, arr._ptr));
-			return r;
+			return new Complex(r, i);
 		}
 
 		// TODO: Add the other algorithms
 
-		public static Array<T> Dot<T>(Array<T> lhs, Array<T> rhs, bool lconj = false, bool rconj = false)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Dot(Array lhs, Array rhs, bool lconj = false, bool rconj = false)
 		{
 			IntPtr ptr;
-            Internal.VERIFY(af_blas.af_dot(out ptr, lhs._ptr, rhs._ptr, lconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE, rconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE));
-			return new Array<T>(ptr);
+			Internal.VERIFY(af_blas.af_dot(out ptr, lhs._ptr, rhs._ptr, lconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE, rconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE));
+			return new Array(ptr);
 		}
 	}
 }
