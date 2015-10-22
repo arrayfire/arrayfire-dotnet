@@ -43,7 +43,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ArrayFire\ArrayFire.csproj">
+    <ProjectReference Include="..\..\Wrapper\ArrayFire.csproj">
       <Project>{c5f2b49f-6e49-4f37-b8fc-a70c9a061108}</Project>
       <Name>ArrayFire</Name>
     </ProjectReference>
