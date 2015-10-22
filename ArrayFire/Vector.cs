@@ -34,7 +34,6 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 
 using ArrayFire.Interop;
-using static ArrayFire.Global;
 
 namespace ArrayFire
 {
@@ -43,7 +42,7 @@ namespace ArrayFire
 		public static double SumAll(Array<double> arr)
 		{
 			double r, i;
-			VERIFY(af_algorithm.af_sum_all(out r, out i, arr._ptr));
+			Internal.VERIFY(af_algorithm.af_sum_all(out r, out i, arr._ptr));
 			return r;
 		}
 
@@ -52,7 +51,7 @@ namespace ArrayFire
 		public static Array<T> Dot<T>(Array<T> lhs, Array<T> rhs, bool lconj = false, bool rconj = false)
 		{
 			IntPtr ptr;
-			VERIFY(af_blas.af_dot(out ptr, lhs._ptr, rhs._ptr, lconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE, rconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE));
+            Internal.VERIFY(af_blas.af_dot(out ptr, lhs._ptr, rhs._ptr, lconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE, rconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE));
 			return new Array<T>(ptr);
 		}
 	}
