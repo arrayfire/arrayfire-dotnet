@@ -10,8 +10,9 @@ namespace CSharpTesting
     {
         static void Main(string[] args)
         {
-            var arr1 = Data.RandNormal<double>(3, 3);
-            var arr2 = Data.RandNormal<double>(3, 3);
+            Device.SetBackend(Backend.CPU);
+            var arr1 = Data.RandNormal<float>(3, 3);
+            var arr2 = Data.RandNormal<float>(3, 3);
             var arr3 = arr1 + arr2;
             var arr4 = Matrix.Multiply(arr1, arr2);
             var arr5 = Arith.Sin(arr1) + Arith.Cos(arr2);

@@ -39,130 +39,154 @@ namespace ArrayFire
 {
 	public static class Data
 	{
-		#region Create array from host data
+        #region Create array from host data
 #if _
 	for (\w+)=(\w+) in
-		b8=bool c64=Complex f32=float f64=double s32=int s64=long u32=uint u64=ulong u8=byte
+		b8=bool c64=Complex f32=float f64=double s32=int s64=long u32=uint u64=ulong u8=byte s16=short u16=ushort
 	do
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray($2[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array(ptr); }
+		public static Array CreateArray($2[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray($2[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array(ptr); }
+		public static Array CreateArray($2[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray($2[,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array(ptr); }
+		public static Array CreateArray($2[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray($2[,,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array(ptr); }
+		public static Array CreateArray($2[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.$1)); return new Array(ptr); }
 #else
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(bool[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.b8)); return new Array(ptr); }
+		public static Array CreateArray(bool[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.b8)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(bool[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.b8)); return new Array(ptr); }
+		public static Array CreateArray(bool[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.b8)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(bool[,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.b8)); return new Array(ptr); }
+		public static Array CreateArray(bool[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.b8)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(bool[,,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.b8)); return new Array(ptr); }
+		public static Array CreateArray(bool[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.b8)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(Complex[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.c64)); return new Array(ptr); }
+		public static Array CreateArray(Complex[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.c64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(Complex[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.c64)); return new Array(ptr); }
+		public static Array CreateArray(Complex[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.c64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(Complex[,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.c64)); return new Array(ptr); }
+		public static Array CreateArray(Complex[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.c64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(Complex[,,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.c64)); return new Array(ptr); }
+		public static Array CreateArray(Complex[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.c64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(float[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f32)); return new Array(ptr); }
+		public static Array CreateArray(float[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(float[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f32)); return new Array(ptr); }
+		public static Array CreateArray(float[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(float[,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f32)); return new Array(ptr); }
+		public static Array CreateArray(float[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(float[,,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f32)); return new Array(ptr); }
+		public static Array CreateArray(float[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(double[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f64)); return new Array(ptr); }
+		public static Array CreateArray(double[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(double[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f64)); return new Array(ptr); }
+		public static Array CreateArray(double[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(double[,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f64)); return new Array(ptr); }
+		public static Array CreateArray(double[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(double[,,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f64)); return new Array(ptr); }
+		public static Array CreateArray(double[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.f64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(int[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s32)); return new Array(ptr); }
+		public static Array CreateArray(int[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(int[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s32)); return new Array(ptr); }
+		public static Array CreateArray(int[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(int[,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s32)); return new Array(ptr); }
+		public static Array CreateArray(int[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(int[,,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s32)); return new Array(ptr); }
+		public static Array CreateArray(int[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(long[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s64)); return new Array(ptr); }
+		public static Array CreateArray(long[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(long[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s64)); return new Array(ptr); }
+		public static Array CreateArray(long[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(long[,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s64)); return new Array(ptr); }
+		public static Array CreateArray(long[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(long[,,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s64)); return new Array(ptr); }
+		public static Array CreateArray(long[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(uint[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u32)); return new Array(ptr); }
+		public static Array CreateArray(uint[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(uint[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u32)); return new Array(ptr); }
+		public static Array CreateArray(uint[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(uint[,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u32)); return new Array(ptr); }
+		public static Array CreateArray(uint[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(uint[,,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u32)); return new Array(ptr); }
+		public static Array CreateArray(uint[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u32)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(ulong[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u64)); return new Array(ptr); }
+		public static Array CreateArray(ulong[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(ulong[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u64)); return new Array(ptr); }
+		public static Array CreateArray(ulong[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(ulong[,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u64)); return new Array(ptr); }
+		public static Array CreateArray(ulong[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(ulong[,,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u64)); return new Array(ptr); }
+		public static Array CreateArray(ulong[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u64)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(byte[] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u8)); return new Array(ptr); }
+		public static Array CreateArray(byte[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u8)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(byte[,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u8)); return new Array(ptr); }
+		public static Array CreateArray(byte[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u8)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(byte[,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u8)); return new Array(ptr); }
+		public static Array CreateArray(byte[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u8)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array CreateArray(byte[,,,] data) { IntPtr ptr; Internal.VERIFY(af_array.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u8)); return new Array(ptr); }
+		public static Array CreateArray(byte[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u8)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array CreateArray(short[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s16)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array CreateArray(short[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s16)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array CreateArray(short[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s16)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array CreateArray(short[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.s16)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array CreateArray(ushort[] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u16)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array CreateArray(ushort[,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u16)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array CreateArray(ushort[,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u16)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array CreateArray(ushort[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u16)); return new Array(ptr); }
 #endif
 		#endregion
 
@@ -176,7 +200,7 @@ namespace ArrayFire
 		public static Array Rand$2<T>(long[] dims)
 		{
 			IntPtr ptr;
-			Internal.VERIFY(af_data.af_rand$1(out ptr, (uint)dims.Length, dims, Internal.toDType<T>()));
+			Internal.VERIFY(AFData.af_rand$1(out ptr, (uint)dims.Length, dims, Internal.toDType<T>()));
 			return new Array(ptr);
 		}
 
@@ -196,7 +220,7 @@ namespace ArrayFire
 		public static Array RandUniform<T>(long[] dims)
 		{
 			IntPtr ptr;
-			Internal.VERIFY(af_data.af_randu(out ptr, (uint)dims.Length, dims, Internal.toDType<T>()));
+			Internal.VERIFY(AFData.af_randu(out ptr, (uint)dims.Length, dims, Internal.toDType<T>()));
 			return new Array(ptr);
 		}
 
@@ -216,7 +240,7 @@ namespace ArrayFire
 		public static Array RandNormal<T>(long[] dims)
 		{
 			IntPtr ptr;
-			Internal.VERIFY(af_data.af_randn(out ptr, (uint)dims.Length, dims, Internal.toDType<T>()));
+			Internal.VERIFY(AFData.af_randn(out ptr, (uint)dims.Length, dims, Internal.toDType<T>()));
 			return new Array(ptr);
 		}
 
@@ -239,8 +263,8 @@ namespace ArrayFire
 		public static Array CreateComplexArray(Array real, Array imag = null)
 		{
 			IntPtr ptr;
-			if (imag != null) Internal.VERIFY(af_arith.af_cplx2(out ptr, real._ptr, imag._ptr, false));
-			else Internal.VERIFY(af_arith.af_cplx(out ptr, real._ptr));
+			if (imag != null) Internal.VERIFY(AFArith.af_cplx2(out ptr, real._ptr, imag._ptr, false));
+			else Internal.VERIFY(AFArith.af_cplx(out ptr, real._ptr));
 			return new Array(ptr);
 		}
 		#endregion
@@ -289,7 +313,7 @@ namespace ArrayFire
 		public static Array Cast<X>(Array arr)
 		{
 			IntPtr ptr;
-			Internal.VERIFY(af_arith.af_cast(out ptr, arr._ptr, Internal.toDType<X>()));
+			Internal.VERIFY(AFArith.af_cast(out ptr, arr._ptr, Internal.toDType<X>()));
 			return new Array(ptr);
 		}
 		#endregion

@@ -44,7 +44,15 @@ namespace ArrayFire
 		ConjugateTranspose = af_mat_prop.AF_MAT_CTRANS
 	}
 
-	public struct Dim4
+    public enum Backend
+    {
+        CPU = af_backend.AF_BACKEND_CPU,
+        CUDA = af_backend.AF_BACKEND_CUDA,
+        DEFAULT = af_backend.AF_BACKEND_DEFAULT,
+        OPENCL = af_backend.AF_BACKEND_OPENCL
+    }
+
+    public struct Dim4
 	{
 		public readonly int D0, D1, D2, D3;
 		public Dim4(int d0, int d1, int d2, int d3)
@@ -58,6 +66,6 @@ namespace ArrayFire
 
 	public class ArrayFireException : Exception
 	{
-		public ArrayFireException(af_err message) : base(message.ToString()) { }
-	}
+		public ArrayFireException(af_err message) : base(Internal.getError(message)) { }
+    }
 }

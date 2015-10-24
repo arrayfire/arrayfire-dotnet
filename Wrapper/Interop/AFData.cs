@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 namespace ArrayFire.Interop
 {
 	[SuppressUnmanagedCodeSecurity]
-	public static class af_data
+	public static class AFData
 	{
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_constant(out IntPtr array_arr, double val, uint ndims, [In] long[] dim_dims, af_dtype type);

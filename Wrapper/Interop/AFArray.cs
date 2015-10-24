@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 namespace ArrayFire.Interop
 {
 	[SuppressUnmanagedCodeSecurity]
-	public static class af_array
+	public static class AFArray
 	{
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_create_array(out IntPtr array_arr, [In] bool[] data, uint ndims, [In] long[] dim_dims, af_dtype type);
@@ -40,6 +40,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_create_array(out IntPtr array_arr, [In] byte[] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_create_array(out IntPtr array_arr, [In] short[] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_create_array(out IntPtr array_arr, [In] ushort[] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_create_array(out IntPtr array_arr, [In] bool[,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -65,6 +71,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_create_array(out IntPtr array_arr, [In] byte[,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_create_array(out IntPtr array_arr, [In] short[,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_create_array(out IntPtr array_arr, [In] ushort[,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_create_array(out IntPtr array_arr, [In] bool[,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
@@ -94,6 +106,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_create_array(out IntPtr array_arr, [In] byte[,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_create_array(out IntPtr array_arr, [In] short[,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_create_array(out IntPtr array_arr, [In] ushort[,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_create_array(out IntPtr array_arr, [In] bool[,,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -119,6 +137,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_create_array(out IntPtr array_arr, [In] byte[,,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_create_array(out IntPtr array_arr, [In] short[,,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_create_array(out IntPtr array_arr, [In] ushort[,,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_create_handle(out IntPtr array_arr, uint ndims, [In] long[] dim_dims, af_dtype type);
@@ -154,6 +178,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_write_array(IntPtr array_arr, [In] byte[] data, UIntPtr size_bytes, af_source src);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_write_array(IntPtr array_arr, [In] short[] data, UIntPtr size_bytes, af_source src);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_write_array(IntPtr array_arr, [In] ushort[] data, UIntPtr size_bytes, af_source src);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_write_array(IntPtr array_arr, [In] bool[,] data, UIntPtr size_bytes, af_source src);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -179,6 +209,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_write_array(IntPtr array_arr, [In] byte[,] data, UIntPtr size_bytes, af_source src);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_write_array(IntPtr array_arr, [In] short[,] data, UIntPtr size_bytes, af_source src);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_write_array(IntPtr array_arr, [In] ushort[,] data, UIntPtr size_bytes, af_source src);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_write_array(IntPtr array_arr, [In] bool[,,] data, UIntPtr size_bytes, af_source src);
@@ -208,6 +244,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_write_array(IntPtr array_arr, [In] byte[,,] data, UIntPtr size_bytes, af_source src);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_write_array(IntPtr array_arr, [In] short[,,] data, UIntPtr size_bytes, af_source src);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_write_array(IntPtr array_arr, [In] ushort[,,] data, UIntPtr size_bytes, af_source src);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_write_array(IntPtr array_arr, [In] bool[,,,] data, UIntPtr size_bytes, af_source src);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -233,6 +275,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_write_array(IntPtr array_arr, [In] byte[,,,] data, UIntPtr size_bytes, af_source src);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_write_array(IntPtr array_arr, [In] short[,,,] data, UIntPtr size_bytes, af_source src);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_write_array(IntPtr array_arr, [In] ushort[,,,] data, UIntPtr size_bytes, af_source src);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_get_data_ptr([Out] bool[] data, IntPtr array_arr);
@@ -262,6 +310,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_get_data_ptr([Out] byte[] data, IntPtr array_arr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_get_data_ptr([Out] short[] data, IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_get_data_ptr([Out] ushort[] data, IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_get_data_ptr([Out] bool[,] data, IntPtr array_arr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -287,6 +341,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_get_data_ptr([Out] byte[,] data, IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_get_data_ptr([Out] short[,] data, IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_get_data_ptr([Out] ushort[,] data, IntPtr array_arr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_get_data_ptr([Out] bool[,,] data, IntPtr array_arr);
@@ -316,6 +376,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_get_data_ptr([Out] byte[,,] data, IntPtr array_arr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_get_data_ptr([Out] short[,,] data, IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_get_data_ptr([Out] ushort[,,] data, IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_get_data_ptr([Out] bool[,,,] data, IntPtr array_arr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -341,6 +407,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_get_data_ptr([Out] byte[,,,] data, IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_get_data_ptr([Out] short[,,,] data, IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_get_data_ptr([Out] ushort[,,,] data, IntPtr array_arr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_release_array(IntPtr array_arr);

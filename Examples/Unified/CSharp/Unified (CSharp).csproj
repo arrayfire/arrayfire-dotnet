@@ -2,11 +2,11 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <ProjectGuid>{C5F2B49F-6E49-4F37-B8FC-A70C9A061108}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{37C673D3-0492-43CC-B1E4-B59F17E053BC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ArrayFire</RootNamespace>
-    <AssemblyName>ArrayFire</AssemblyName>
+    <RootNamespace>Unified.CSharp</RootNamespace>
+    <AssemblyName>Unified.CSharp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -18,6 +18,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\Release\</OutputPath>
@@ -27,6 +28,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -35,30 +37,17 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arith.cs" />
-    <Compile Include="Array.cs" />
-    <Compile Include="Device.cs" />
-    <Compile Include="Interop\AFAlgorithm.cs" />
-    <Compile Include="Interop\AFArith.cs" />
-    <Compile Include="Interop\AFArray.cs" />
-    <Compile Include="Interop\AFBackend.cs" />
-    <Compile Include="Interop\AFBlas.cs" />
-    <Compile Include="Interop\AFData.cs" />
-    <Compile Include="Interop\AFDevice.cs" />
-    <Compile Include="Interop\AFLapack.cs" />
-    <Compile Include="Interop\AFSignal.cs" />
-    <Compile Include="Interop\AFStatistics.cs" />
-    <Compile Include="Interop\AFUtil.cs" />
-    <Compile Include="Interop\Enums.cs" />
-    <Compile Include="Tiny.cs" />
-    <Compile Include="Matrix.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Internal.cs" />
-    <Compile Include="Data.cs" />
-    <Compile Include="Util.cs" />
-    <Compile Include="Vector.cs" />
+    <Compile Include="Program.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Wrapper\ArrayFire.csproj">
+      <Project>{c5f2b49f-6e49-4f37-b8fc-a70c9a061108}</Project>
+      <Name>ArrayFire</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>echo copy "$(CUDA_PATH)\nvvm\bin\nvvm64*.dll" "$(TargetDir)"
