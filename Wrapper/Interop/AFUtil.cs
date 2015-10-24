@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 namespace ArrayFire.Interop
 {
 	[SuppressUnmanagedCodeSecurity]
-	public static class af_util
+	public static class AFUtil
 	{
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_print_array(IntPtr array_arr);

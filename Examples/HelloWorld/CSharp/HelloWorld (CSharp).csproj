@@ -49,6 +49,14 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>echo copy "$(CUDA_PATH)\nvvm\bin\nvvm64*.dll" "$(TargetDir)"
+copy "$(CUDA_PATH)\nvvm\bin\nvvm64*.dll" "$(TargetDir)"
+if errorlevel 1 (
+    echo "CUDA NVVM DLLs copy failed due to missing files."
+    exit /B 0
+)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

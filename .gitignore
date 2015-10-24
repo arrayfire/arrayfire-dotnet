@@ -6,4 +6,8 @@ Examples/HelloWorld/CSharp/bin/
 Examples/HelloWorld/CSharp/obj/
 Examples/HelloWorld/FSharp/bin/
 Examples/HelloWorld/FSharp/obj/
+Examples/Unified/CSharp/bin/
+Examples/Unified/CSharp/obj/
+Examples/Unified/FSharp/bin/
+Examples/Unified/FSharp/obj/
 .vs

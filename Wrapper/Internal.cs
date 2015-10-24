@@ -53,77 +53,91 @@ namespace ArrayFire
 
 #if _
 	for (\w+)=(\w+) in
-			b8=bool c64=Complex f32=float f64=double s32=int s64=long u32=uint u64=ulong u8=byte
+			b8=bool c64=Complex f32=float f64=double s32=int s64=long u32=uint u64=ulong u8=byte s16=short u16=ushort
 	do
 			dtype2clr.Add(af_dtype.$1, typeof($2));
 			clr2dtype.Add(typeof($2), af_dtype.$1);
-			getdatafn[0].Add(typeof($2), (data, ptr) => af_array.af_get_data_ptr(($2[])data, ptr));
-			getdatafn[1].Add(typeof($2), (data, ptr) => af_array.af_get_data_ptr(($2[,])data, ptr));
-			getdatafn[2].Add(typeof($2), (data, ptr) => af_array.af_get_data_ptr(($2[,,])data, ptr));
-			getdatafn[3].Add(typeof($2), (data, ptr) => af_array.af_get_data_ptr(($2[,,,])data, ptr));
+			getdatafn[0].Add(typeof($2), (data, ptr) => AFArray.af_get_data_ptr(($2[])data, ptr));
+			getdatafn[1].Add(typeof($2), (data, ptr) => AFArray.af_get_data_ptr(($2[,])data, ptr));
+			getdatafn[2].Add(typeof($2), (data, ptr) => AFArray.af_get_data_ptr(($2[,,])data, ptr));
+			getdatafn[3].Add(typeof($2), (data, ptr) => AFArray.af_get_data_ptr(($2[,,,])data, ptr));
 #else
 			dtype2clr.Add(af_dtype.b8, typeof(bool));
 			clr2dtype.Add(typeof(bool), af_dtype.b8);
-			getdatafn[0].Add(typeof(bool), (data, ptr) => af_array.af_get_data_ptr((bool[])data, ptr));
-			getdatafn[1].Add(typeof(bool), (data, ptr) => af_array.af_get_data_ptr((bool[,])data, ptr));
-			getdatafn[2].Add(typeof(bool), (data, ptr) => af_array.af_get_data_ptr((bool[,,])data, ptr));
-			getdatafn[3].Add(typeof(bool), (data, ptr) => af_array.af_get_data_ptr((bool[,,,])data, ptr));
+			getdatafn[0].Add(typeof(bool), (data, ptr) => AFArray.af_get_data_ptr((bool[])data, ptr));
+			getdatafn[1].Add(typeof(bool), (data, ptr) => AFArray.af_get_data_ptr((bool[,])data, ptr));
+			getdatafn[2].Add(typeof(bool), (data, ptr) => AFArray.af_get_data_ptr((bool[,,])data, ptr));
+			getdatafn[3].Add(typeof(bool), (data, ptr) => AFArray.af_get_data_ptr((bool[,,,])data, ptr));
 
 			dtype2clr.Add(af_dtype.c64, typeof(Complex));
 			clr2dtype.Add(typeof(Complex), af_dtype.c64);
-			getdatafn[0].Add(typeof(Complex), (data, ptr) => af_array.af_get_data_ptr((Complex[])data, ptr));
-			getdatafn[1].Add(typeof(Complex), (data, ptr) => af_array.af_get_data_ptr((Complex[,])data, ptr));
-			getdatafn[2].Add(typeof(Complex), (data, ptr) => af_array.af_get_data_ptr((Complex[,,])data, ptr));
-			getdatafn[3].Add(typeof(Complex), (data, ptr) => af_array.af_get_data_ptr((Complex[,,,])data, ptr));
+			getdatafn[0].Add(typeof(Complex), (data, ptr) => AFArray.af_get_data_ptr((Complex[])data, ptr));
+			getdatafn[1].Add(typeof(Complex), (data, ptr) => AFArray.af_get_data_ptr((Complex[,])data, ptr));
+			getdatafn[2].Add(typeof(Complex), (data, ptr) => AFArray.af_get_data_ptr((Complex[,,])data, ptr));
+			getdatafn[3].Add(typeof(Complex), (data, ptr) => AFArray.af_get_data_ptr((Complex[,,,])data, ptr));
 
 			dtype2clr.Add(af_dtype.f32, typeof(float));
 			clr2dtype.Add(typeof(float), af_dtype.f32);
-			getdatafn[0].Add(typeof(float), (data, ptr) => af_array.af_get_data_ptr((float[])data, ptr));
-			getdatafn[1].Add(typeof(float), (data, ptr) => af_array.af_get_data_ptr((float[,])data, ptr));
-			getdatafn[2].Add(typeof(float), (data, ptr) => af_array.af_get_data_ptr((float[,,])data, ptr));
-			getdatafn[3].Add(typeof(float), (data, ptr) => af_array.af_get_data_ptr((float[,,,])data, ptr));
+			getdatafn[0].Add(typeof(float), (data, ptr) => AFArray.af_get_data_ptr((float[])data, ptr));
+			getdatafn[1].Add(typeof(float), (data, ptr) => AFArray.af_get_data_ptr((float[,])data, ptr));
+			getdatafn[2].Add(typeof(float), (data, ptr) => AFArray.af_get_data_ptr((float[,,])data, ptr));
+			getdatafn[3].Add(typeof(float), (data, ptr) => AFArray.af_get_data_ptr((float[,,,])data, ptr));
 
 			dtype2clr.Add(af_dtype.f64, typeof(double));
 			clr2dtype.Add(typeof(double), af_dtype.f64);
-			getdatafn[0].Add(typeof(double), (data, ptr) => af_array.af_get_data_ptr((double[])data, ptr));
-			getdatafn[1].Add(typeof(double), (data, ptr) => af_array.af_get_data_ptr((double[,])data, ptr));
-			getdatafn[2].Add(typeof(double), (data, ptr) => af_array.af_get_data_ptr((double[,,])data, ptr));
-			getdatafn[3].Add(typeof(double), (data, ptr) => af_array.af_get_data_ptr((double[,,,])data, ptr));
+			getdatafn[0].Add(typeof(double), (data, ptr) => AFArray.af_get_data_ptr((double[])data, ptr));
+			getdatafn[1].Add(typeof(double), (data, ptr) => AFArray.af_get_data_ptr((double[,])data, ptr));
+			getdatafn[2].Add(typeof(double), (data, ptr) => AFArray.af_get_data_ptr((double[,,])data, ptr));
+			getdatafn[3].Add(typeof(double), (data, ptr) => AFArray.af_get_data_ptr((double[,,,])data, ptr));
 
 			dtype2clr.Add(af_dtype.s32, typeof(int));
 			clr2dtype.Add(typeof(int), af_dtype.s32);
-			getdatafn[0].Add(typeof(int), (data, ptr) => af_array.af_get_data_ptr((int[])data, ptr));
-			getdatafn[1].Add(typeof(int), (data, ptr) => af_array.af_get_data_ptr((int[,])data, ptr));
-			getdatafn[2].Add(typeof(int), (data, ptr) => af_array.af_get_data_ptr((int[,,])data, ptr));
-			getdatafn[3].Add(typeof(int), (data, ptr) => af_array.af_get_data_ptr((int[,,,])data, ptr));
+			getdatafn[0].Add(typeof(int), (data, ptr) => AFArray.af_get_data_ptr((int[])data, ptr));
+			getdatafn[1].Add(typeof(int), (data, ptr) => AFArray.af_get_data_ptr((int[,])data, ptr));
+			getdatafn[2].Add(typeof(int), (data, ptr) => AFArray.af_get_data_ptr((int[,,])data, ptr));
+			getdatafn[3].Add(typeof(int), (data, ptr) => AFArray.af_get_data_ptr((int[,,,])data, ptr));
 
 			dtype2clr.Add(af_dtype.s64, typeof(long));
 			clr2dtype.Add(typeof(long), af_dtype.s64);
-			getdatafn[0].Add(typeof(long), (data, ptr) => af_array.af_get_data_ptr((long[])data, ptr));
-			getdatafn[1].Add(typeof(long), (data, ptr) => af_array.af_get_data_ptr((long[,])data, ptr));
-			getdatafn[2].Add(typeof(long), (data, ptr) => af_array.af_get_data_ptr((long[,,])data, ptr));
-			getdatafn[3].Add(typeof(long), (data, ptr) => af_array.af_get_data_ptr((long[,,,])data, ptr));
+			getdatafn[0].Add(typeof(long), (data, ptr) => AFArray.af_get_data_ptr((long[])data, ptr));
+			getdatafn[1].Add(typeof(long), (data, ptr) => AFArray.af_get_data_ptr((long[,])data, ptr));
+			getdatafn[2].Add(typeof(long), (data, ptr) => AFArray.af_get_data_ptr((long[,,])data, ptr));
+			getdatafn[3].Add(typeof(long), (data, ptr) => AFArray.af_get_data_ptr((long[,,,])data, ptr));
 
 			dtype2clr.Add(af_dtype.u32, typeof(uint));
 			clr2dtype.Add(typeof(uint), af_dtype.u32);
-			getdatafn[0].Add(typeof(uint), (data, ptr) => af_array.af_get_data_ptr((uint[])data, ptr));
-			getdatafn[1].Add(typeof(uint), (data, ptr) => af_array.af_get_data_ptr((uint[,])data, ptr));
-			getdatafn[2].Add(typeof(uint), (data, ptr) => af_array.af_get_data_ptr((uint[,,])data, ptr));
-			getdatafn[3].Add(typeof(uint), (data, ptr) => af_array.af_get_data_ptr((uint[,,,])data, ptr));
+			getdatafn[0].Add(typeof(uint), (data, ptr) => AFArray.af_get_data_ptr((uint[])data, ptr));
+			getdatafn[1].Add(typeof(uint), (data, ptr) => AFArray.af_get_data_ptr((uint[,])data, ptr));
+			getdatafn[2].Add(typeof(uint), (data, ptr) => AFArray.af_get_data_ptr((uint[,,])data, ptr));
+			getdatafn[3].Add(typeof(uint), (data, ptr) => AFArray.af_get_data_ptr((uint[,,,])data, ptr));
 
 			dtype2clr.Add(af_dtype.u64, typeof(ulong));
 			clr2dtype.Add(typeof(ulong), af_dtype.u64);
-			getdatafn[0].Add(typeof(ulong), (data, ptr) => af_array.af_get_data_ptr((ulong[])data, ptr));
-			getdatafn[1].Add(typeof(ulong), (data, ptr) => af_array.af_get_data_ptr((ulong[,])data, ptr));
-			getdatafn[2].Add(typeof(ulong), (data, ptr) => af_array.af_get_data_ptr((ulong[,,])data, ptr));
-			getdatafn[3].Add(typeof(ulong), (data, ptr) => af_array.af_get_data_ptr((ulong[,,,])data, ptr));
+			getdatafn[0].Add(typeof(ulong), (data, ptr) => AFArray.af_get_data_ptr((ulong[])data, ptr));
+			getdatafn[1].Add(typeof(ulong), (data, ptr) => AFArray.af_get_data_ptr((ulong[,])data, ptr));
+			getdatafn[2].Add(typeof(ulong), (data, ptr) => AFArray.af_get_data_ptr((ulong[,,])data, ptr));
+			getdatafn[3].Add(typeof(ulong), (data, ptr) => AFArray.af_get_data_ptr((ulong[,,,])data, ptr));
 
 			dtype2clr.Add(af_dtype.u8, typeof(byte));
 			clr2dtype.Add(typeof(byte), af_dtype.u8);
-			getdatafn[0].Add(typeof(byte), (data, ptr) => af_array.af_get_data_ptr((byte[])data, ptr));
-			getdatafn[1].Add(typeof(byte), (data, ptr) => af_array.af_get_data_ptr((byte[,])data, ptr));
-			getdatafn[2].Add(typeof(byte), (data, ptr) => af_array.af_get_data_ptr((byte[,,])data, ptr));
-			getdatafn[3].Add(typeof(byte), (data, ptr) => af_array.af_get_data_ptr((byte[,,,])data, ptr));
+			getdatafn[0].Add(typeof(byte), (data, ptr) => AFArray.af_get_data_ptr((byte[])data, ptr));
+			getdatafn[1].Add(typeof(byte), (data, ptr) => AFArray.af_get_data_ptr((byte[,])data, ptr));
+			getdatafn[2].Add(typeof(byte), (data, ptr) => AFArray.af_get_data_ptr((byte[,,])data, ptr));
+			getdatafn[3].Add(typeof(byte), (data, ptr) => AFArray.af_get_data_ptr((byte[,,,])data, ptr));
+
+			dtype2clr.Add(af_dtype.s16, typeof(short));
+			clr2dtype.Add(typeof(short), af_dtype.s16);
+			getdatafn[0].Add(typeof(short), (data, ptr) => AFArray.af_get_data_ptr((short[])data, ptr));
+			getdatafn[1].Add(typeof(short), (data, ptr) => AFArray.af_get_data_ptr((short[,])data, ptr));
+			getdatafn[2].Add(typeof(short), (data, ptr) => AFArray.af_get_data_ptr((short[,,])data, ptr));
+			getdatafn[3].Add(typeof(short), (data, ptr) => AFArray.af_get_data_ptr((short[,,,])data, ptr));
+
+			dtype2clr.Add(af_dtype.u16, typeof(ushort));
+			clr2dtype.Add(typeof(ushort), af_dtype.u16);
+			getdatafn[0].Add(typeof(ushort), (data, ptr) => AFArray.af_get_data_ptr((ushort[])data, ptr));
+			getdatafn[1].Add(typeof(ushort), (data, ptr) => AFArray.af_get_data_ptr((ushort[,])data, ptr));
+			getdatafn[2].Add(typeof(ushort), (data, ptr) => AFArray.af_get_data_ptr((ushort[,,])data, ptr));
+			getdatafn[3].Add(typeof(ushort), (data, ptr) => AFArray.af_get_data_ptr((ushort[,,,])data, ptr));
 #endif
 		}
 
@@ -146,5 +160,29 @@ namespace ArrayFire
 		{
 			if (err != af_err.AF_SUCCESS) throw new ArrayFireException(err);
 		}
-	}
+
+        internal static string getError(af_err err)
+        {
+            switch (err)
+            {
+                case af_err.AF_SUCCESS: return "Success";
+                case af_err.AF_ERR_INTERNAL: return "Internal error";
+                case af_err.AF_ERR_NO_MEM: return "Device out of memory";
+                case af_err.AF_ERR_DRIVER: return "Driver not available or incompatible";
+                case af_err.AF_ERR_RUNTIME: return "Runtime error ";
+                case af_err.AF_ERR_INVALID_ARRAY: return "Invalid array";
+                case af_err.AF_ERR_ARG: return "Invalid input argument";
+                case af_err.AF_ERR_SIZE: return "Invalid input size";
+                case af_err.AF_ERR_DIFF_TYPE: return "Input types are not the same";
+                case af_err.AF_ERR_NOT_SUPPORTED: return "Function not supported";
+                case af_err.AF_ERR_NOT_CONFIGURED: return "Function not configured to build";
+                case af_err.AF_ERR_TYPE: return "Function does not support this data type";
+                case af_err.AF_ERR_NO_DBL: return "Double precision not supported for this device";
+                case af_err.AF_ERR_LOAD_LIB: return "Failed to load dynamic library";
+                case af_err.AF_ERR_LOAD_SYM: return "Failed to load symbol";
+                case af_err.AF_ERR_UNKNOWN: return "Unknown error";
+                default: return err.ToString();
+            }
+        }
+    }
 }

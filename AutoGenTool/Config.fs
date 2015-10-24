@@ -45,4 +45,4 @@ module Config =
     // path to the ArrayFire library source code (relative to this project's bin/Debug or bin/Release folders)
     let OUTPUT_DIR = "../../../Wrapper"
 
-    let DLL_NAME = "afcpu" // this wont matter when the unified backend is ready with ArrayFire 3.2
+    let DLL_NAME = "af" // unified backend

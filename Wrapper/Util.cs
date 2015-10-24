@@ -43,13 +43,13 @@ namespace ArrayFire
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Print(Array arr)
 		{
-			Internal.VERIFY(af_util.af_print_array(arr._ptr));
+			Internal.VERIFY(AFUtil.af_print_array(arr._ptr));
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static void Print(Array arr, string name, int precision = 4)
 		{
-			Internal.VERIFY(af_util.af_print_array_gen(name, arr._ptr, precision));
+			Internal.VERIFY(AFUtil.af_print_array_gen(name, arr._ptr, precision));
 		}
 		#endregion
 	}

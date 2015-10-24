@@ -53,7 +53,7 @@ namespace ArrayFire
 			if (_instances % 50 == 0) // only do it every time we allocated new 50 instances, we can tweak this
 			{
 				UIntPtr bytes, buffers, lockbytes, lockbuffers;
-				Internal.VERIFY(af_device.af_device_mem_info(out bytes, out buffers, out lockbytes, out lockbuffers));
+				Internal.VERIFY(AFDevice.af_device_mem_info(out bytes, out buffers, out lockbytes, out lockbuffers));
 				// code borrowed from the R wrapper:
 				if ((double)lockbytes > Math.Pow(1000, 3) || (double)lockbuffers > 50) GC.Collect();
 			}
@@ -65,7 +65,7 @@ namespace ArrayFire
 			get
 			{
 				uint res;
-				Internal.VERIFY(af_array.af_get_numdims(out res, _ptr));
+				Internal.VERIFY(AFArray.af_get_numdims(out res, _ptr));
 				return (int)res;
 			}
 		}
@@ -75,7 +75,7 @@ namespace ArrayFire
 			get
 			{
 				long res;
-				Internal.VERIFY(af_array.af_get_elements(out res, _ptr));
+				Internal.VERIFY(AFArray.af_get_elements(out res, _ptr));
 				return (int)res;
 			}
 		}
@@ -85,7 +85,7 @@ namespace ArrayFire
 			get
 			{
 				long d0, d1, d2, d3;
-				Internal.VERIFY(af_array.af_get_dims(out d0, out d1, out d2, out d3, _ptr));
+				Internal.VERIFY(AFArray.af_get_dims(out d0, out d1, out d2, out d3, _ptr));
 				return new Dim4((int)d0, (int)d1, (int)d2, (int)d3);
 			}
 		}
@@ -95,7 +95,7 @@ namespace ArrayFire
 			get
 			{
 				af_dtype dtype;
-				Internal.VERIFY(af_array.af_get_type(out dtype, _ptr));
+				Internal.VERIFY(AFArray.af_get_type(out dtype, _ptr));
 				return Internal.toClrType(dtype);
 			}
 		}
@@ -106,13 +106,13 @@ namespace ArrayFire
 	for (\w+) in
 		Empty Scalar Row Column Vector
 	do
-		public bool Is$1 { get { bool res; Internal.VERIFY(af_array.af_is_$L1(out res, _ptr)); return res; } }
+		public bool Is$1 { get { bool res; Internal.VERIFY(AFArray.af_is_$L1(out res, _ptr)); return res; } }
 #else
-		public bool IsEmpty { get { bool res; Internal.VERIFY(af_array.af_is_empty(out res, _ptr)); return res; } }
-		public bool IsScalar { get { bool res; Internal.VERIFY(af_array.af_is_scalar(out res, _ptr)); return res; } }
-		public bool IsRow { get { bool res; Internal.VERIFY(af_array.af_is_row(out res, _ptr)); return res; } }
-		public bool IsColumn { get { bool res; Internal.VERIFY(af_array.af_is_column(out res, _ptr)); return res; } }
-		public bool IsVector { get { bool res; Internal.VERIFY(af_array.af_is_vector(out res, _ptr)); return res; } }
+		public bool IsEmpty { get { bool res; Internal.VERIFY(AFArray.af_is_empty(out res, _ptr)); return res; } }
+		public bool IsScalar { get { bool res; Internal.VERIFY(AFArray.af_is_scalar(out res, _ptr)); return res; } }
+		public bool IsRow { get { bool res; Internal.VERIFY(AFArray.af_is_row(out res, _ptr)); return res; } }
+		public bool IsColumn { get { bool res; Internal.VERIFY(AFArray.af_is_column(out res, _ptr)); return res; } }
+		public bool IsVector { get { bool res; Internal.VERIFY(AFArray.af_is_vector(out res, _ptr)); return res; } }
 #endif
 		#endregion
 
@@ -122,31 +122,31 @@ namespace ArrayFire
 		+add -sub *mul /div %mod &bitand |bitor ^bitxor
 	do
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array operator $1(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_$2(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+		public static Array operator $1(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_$2(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 #else
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array operator +(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_add(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+		public static Array operator +(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array operator -(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_sub(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+		public static Array operator -(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array operator *(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_mul(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+		public static Array operator *(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array operator /(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_div(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+		public static Array operator /(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array operator %(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_mod(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+		public static Array operator %(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_mod(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array operator &(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_bitand(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+		public static Array operator &(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_bitand(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array operator |(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_bitor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+		public static Array operator |(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_bitor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array operator ^(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(af_arith.af_bitxor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+		public static Array operator ^(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_bitxor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 #endif
 		#endregion
 
@@ -155,7 +155,7 @@ namespace ArrayFire
 		{
 			if (_ptr != IntPtr.Zero)
 			{
-				af_array.af_release_array(_ptr);
+				AFArray.af_release_array(_ptr);
 				_ptr = IntPtr.Zero;
 				Interlocked.Decrement(ref _instances);
 			}

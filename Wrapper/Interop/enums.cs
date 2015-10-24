@@ -11,7 +11,7 @@ namespace ArrayFire.Interop
 {
 	internal static class af_config // put here for convenience
 	{
-		internal const string dll = @"afcpu";
+		internal const string dll = @"af";
 	}
 
 	public enum af_err
@@ -100,6 +100,11 @@ namespace ArrayFire.Interop
 		/// not support graphics
 		///
 		AF_ERR_NO_GFX         = 402,
+
+		// 500-599 Errors specific to heterogenous API
+		AF_ERR_LOAD_LIB       = 501,
+		AF_ERR_LOAD_SYM       = 502,
+
 		// 900-999 Errors from upstream libraries and runtimes
 
 		///
@@ -120,12 +125,16 @@ namespace ArrayFire.Interop
 		c32,    ///< 32-bit complex floating point values
 		f64,    ///< 64-bit complex floating point values
 		c64,    ///< 64-bit complex floating point values
-		b8,     ///< 8-bit boolean values
+		b8 ,    ///< 8-bit boolean values
 		s32,    ///< 32-bit signed integral values
 		u32,    ///< 32-bit unsigned integral values
-		u8,     ///< 8-bit unsigned integral values
+		u8 ,    ///< 8-bit unsigned integral values
 		s64,    ///< 64-bit signed integral values
-		u64     ///< 64-bit unsigned integral values
+		u64,    ///< 64-bit unsigned integral values
+		// #if AF_API_VERSION >= 32
+		s16,    ///< 16-bit signed integral values
+		u16,    ///< 16-bit unsigned integral values
+		// #endif
 	}
 
 	public enum af_source
@@ -273,6 +282,14 @@ namespace ArrayFire.Interop
 		AF_FIF_EXR          = 29,   ///< FreeImage Enum for ILM OpenEXR File
 		AF_FIF_JP2          = 31,   ///< FreeImage Enum for JPEG-2000 File
 		AF_FIF_RAW          = 34    ///< FreeImage Enum for RAW Camera Image File
+	}
+
+	public enum af_backend
+	{
+		AF_BACKEND_DEFAULT = 0,  ///< Default backend order: OpenCL -> CUDA -> CPU
+		AF_BACKEND_CPU     = 1,  ///< CPU a.k.a sequential algorithms
+		AF_BACKEND_CUDA    = 2,  ///< CUDA Compute Backend
+		AF_BACKEND_OPENCL  = 3,  ///< OpenCL Compute Backend
 	}
 
 	public enum af_someenum_t

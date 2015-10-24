@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 namespace ArrayFire.Interop
 {
 	[SuppressUnmanagedCodeSecurity]
-	public static class af_device
+	public static class AFDevice
 	{
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_info();
@@ -72,6 +72,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_free_device([Out] byte[] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_device([Out] short[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_device([Out] ushort[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_device([Out] bool[,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -97,6 +103,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_device([Out] byte[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_device([Out] short[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_device([Out] ushort[,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_device([Out] bool[,,] ptr);
@@ -126,6 +138,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_free_device([Out] byte[,,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_device([Out] short[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_device([Out] ushort[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_device([Out] bool[,,,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -151,6 +169,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_device([Out] byte[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_device([Out] short[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_device([Out] ushort[,,,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_pinned([Out] bool[] ptr);
@@ -180,6 +204,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_free_pinned([Out] byte[] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_pinned([Out] short[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_pinned([Out] ushort[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_pinned([Out] bool[,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -205,6 +235,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_pinned([Out] byte[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_pinned([Out] short[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_pinned([Out] ushort[,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_pinned([Out] bool[,,] ptr);
@@ -234,6 +270,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_free_pinned([Out] byte[,,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_pinned([Out] short[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_pinned([Out] ushort[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_pinned([Out] bool[,,,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -259,6 +301,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_pinned([Out] byte[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_pinned([Out] short[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_pinned([Out] ushort[,,,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_device_array(out IntPtr array_arr, [In] bool[] data, uint ndims, [In] long[] dim_dims, af_dtype type);
@@ -288,6 +336,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_device_array(out IntPtr array_arr, [In] byte[] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_device_array(out IntPtr array_arr, [In] short[] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_device_array(out IntPtr array_arr, [In] ushort[] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_device_array(out IntPtr array_arr, [In] bool[,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -313,6 +367,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_device_array(out IntPtr array_arr, [In] byte[,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_device_array(out IntPtr array_arr, [In] short[,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_device_array(out IntPtr array_arr, [In] ushort[,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_device_array(out IntPtr array_arr, [In] bool[,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
@@ -342,6 +402,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_device_array(out IntPtr array_arr, [In] byte[,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_device_array(out IntPtr array_arr, [In] short[,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_device_array(out IntPtr array_arr, [In] ushort[,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_device_array(out IntPtr array_arr, [In] bool[,,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -367,6 +433,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_device_array(out IntPtr array_arr, [In] byte[,,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_device_array(out IntPtr array_arr, [In] short[,,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_device_array(out IntPtr array_arr, [In] ushort[,,,] data, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_device_mem_info(out UIntPtr size_alloc_bytes, out UIntPtr size_alloc_buffers, out UIntPtr size_lock_bytes, out UIntPtr size_lock_buffers);

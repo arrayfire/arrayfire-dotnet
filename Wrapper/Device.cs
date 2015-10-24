@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -37,60 +37,27 @@ using ArrayFire.Interop;
 
 namespace ArrayFire
 {
+    public static class Device
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetBackend(Backend backend)
+        {
+            Internal.VERIFY(AFBackend.af_set_backend((af_backend)backend));
+        }
 
-	public static class Matrix
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array Multiply(Array lhs, Array rhs, MatMulOp lop = MatMulOp.None, MatMulOp rop = MatMulOp.None)
-		{
-			IntPtr ptr;
-			Internal.VERIFY(AFBlas.af_matmul(out ptr, lhs._ptr, rhs._ptr, (af_mat_prop)lop, (af_mat_prop)rop));
-			return new Array(ptr);
-		}
+        public static void PrintInfo()
+        {
+            Internal.VERIFY(AFDevice.af_info());
+        }
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void TransposeInPlace(Array arr, bool conjugate)
-		{
-			Internal.VERIFY(AFBlas.af_transpose_inplace(arr._ptr, conjugate));
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array Transpose(Array arr, bool conjugate)
-		{
-			IntPtr ptr;
-			Internal.VERIFY(AFBlas.af_transpose(out ptr, arr._ptr, conjugate));
-			return new Array(ptr);
-		}
-
-		/*
-		public static double Det(Array<double> arr)
-		{
-			double r, i;
-			Internal.VERIFY(AFLapack.af_det(out r, out i, arr._ptr));
-			return r;
-		}
-
-		public static float Det(Array<float> arr)
-		{
-			double r, i;
-			Internal.VERIFY(AFLapack.af_det(out r, out i, arr._ptr));
-			return (float)r;
-		}*/
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Complex Det(Array arr)
-		{
-			double r, i;
-			Internal.VERIFY(AFLapack.af_det(out r, out i, arr._ptr));
-			return new Complex(r, i);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array Inverse(Array arr)
-		{
-			IntPtr ptr;
-			Internal.VERIFY(AFLapack.af_inverse(out ptr, arr._ptr, af_mat_prop.AF_MAT_NONE));
-			return new Array(ptr);
-		}
-	}
+        public static int BackendCount
+        {
+            get
+            {
+                uint res;
+                Internal.VERIFY(AFBackend.af_get_backend_count(out res));
+                return (int)res;
+            }
+        }
+    }
 }

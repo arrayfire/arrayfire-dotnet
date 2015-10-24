@@ -3,14 +3,14 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>55144e61-0740-4116-8f43-a45f1a9909ab</ProjectGuid>
+    <ProjectGuid>ec9265e4-314c-4bf4-b929-6bf419869b46</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>HelloWorld.FSharp</RootNamespace>
-    <AssemblyName>HelloWorld.FSharp</AssemblyName>
+    <RootNamespace>Unified.FSharp</RootNamespace>
+    <AssemblyName>Unified.FSharp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFSharpCoreVersion>4.4.0.0</TargetFSharpCoreVersion>
-    <Name>HelloWorld (FSharp)</Name>
+    <Name>Unified (FSharp)</Name>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

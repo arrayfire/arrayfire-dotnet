@@ -101,7 +101,10 @@ module Interop =
             Regex.Matches(sr.ReadToEnd(), "typedef\s+enum\s{([^}]+)}\s+(\w+)")
         seq {
             for mat in matches do
-                let vals = mat.Groups.[1].Value.Trim().Split('\n') |> Array.map (fun x -> x.Trim())
+                let fixline (line:string) = 
+                    let trim = line.Trim()
+                    if trim.StartsWith "#" then "// " + trim else trim 
+                let vals = mat.Groups.[1].Value.Trim().Split('\n') |> Array.map fixline
                 let name = mat.Groups.[2].Value
                 yield name, vals
         } |> Seq.toList // lazy -> eager (release regex/match resources)
@@ -110,7 +113,7 @@ module Interop =
         let root = INCLUDE_DIR |> List.find Directory.Exists
 
         do
-            use cw = new CodeWriter(OUTPUT_DIR + "/Interop/enums.cs")
+            use cw = new CodeWriter(OUTPUT_DIR + "/Interop/Enums.cs")
             cw <=- "internal static class af_config // put here for convenience"
             cw <=- "{"
             cw <=- "internal const string dll = @\"" + DLL_NAME + "\";"
@@ -126,7 +129,7 @@ module Interop =
             Console.WriteLine()
 
         let namelower file = Path.GetFileNameWithoutExtension(file).ToLower()
-        //let upperFirst (name:string) = name.Substring(0,1).ToUpper() + name.Substring(1)
+        let upperFirst (name:string) = name.Substring(0,1).ToUpper() + name.Substring(1)
 
         let files =
             let find lst elem = List.exists ((=) elem) lst
@@ -135,7 +138,7 @@ module Interop =
         for file in files do
             let matches = getFileMatches file
             if List.isEmpty matches |> not then
-                let name = "af_" + (file |> namelower)
+                let name = "AF" + (file |> namelower |> upperFirst)
                 Console.WriteLine ("class " + name + ":")
                 use cw = new CodeWriter(OUTPUT_DIR + "/Interop/" + name + ".cs")
                 cw <=- "[SuppressUnmanagedCodeSecurity]"
@@ -147,7 +150,7 @@ module Interop =
                     let versions =
                         if not unsupp && pars.Contains("T[_]") then
                             let add x y = y + x
-                            [ "bool"; "Complex"; "float"; "double"; "int"; "long"; "uint"; "ulong"; "byte" ]
+                            [ "bool"; "Complex"; "float"; "double"; "int"; "long"; "uint"; "ulong"; "byte"; "short"; "ushort" ]
                             |> listCartesian [ "[]"; "[,]"; "[,,]"; "[,,,]" ]
                             |> List.map (fun (x,y) -> pars.Replace("T[_]", y + x))
                         else [ pars ]
