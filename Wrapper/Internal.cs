@@ -155,6 +155,11 @@ namespace ArrayFire
 			return getdatafn[arr.Rank - 1][typeof(T)](arr, ptr);
 		}
 
+        internal static long[] toLongArray(int[] intarr)
+        {
+            return System.Array.ConvertAll(intarr, x => (long)x);
+        }
+
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static void VERIFY(af_err err)
 		{
