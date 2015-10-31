@@ -188,75 +188,25 @@ namespace ArrayFire
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Array CreateArray(ushort[,,,] data) { IntPtr ptr; Internal.VERIFY(AFArray.af_create_array(out ptr, data, (uint)data.Rank, new long[] { data.Length }, af_dtype.u16)); return new Array(ptr); }
 #endif
-		#endregion
+        #endregion
 
-		#region Random Arrays
-#if _
-	for (\w),(\w+) in
-		u,Uniform
-		n,Normal
-	do
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array Rand$2<T>(long[] dims)
-		{
-			IntPtr ptr;
-			Internal.VERIFY(AFData.af_rand$1(out ptr, (uint)dims.Length, dims, Internal.toDType<T>()));
-			return new Array(ptr);
-		}
+        #region Random Arrays
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array RandUniform<T>(params int[] dims)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFData.af_randu(out ptr, (uint)dims.Length, Internal.toLongArray(dims), Internal.toDType<T>()));
+            return new Array(ptr);
+        }
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array Rand$2<T>(int d0) { return Rand$2<T>(new long[] { d0 }); }
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array Rand$2<T>(int d0, int d1) { return Rand$2<T>(new long[] { d0, d1 }); }
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array Rand$2<T>(int d0, int d1, int d2) { return Rand$2<T>(new long[] { d0, d1, d2 }); }
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array Rand$2<T>(int d0, int d1, int d2, int d3) { return Rand$2<T>(new long[] { d0, d1, d2, d3 }); }
-#else
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array RandUniform<T>(long[] dims)
-		{
-			IntPtr ptr;
-			Internal.VERIFY(AFData.af_randu(out ptr, (uint)dims.Length, dims, Internal.toDType<T>()));
-			return new Array(ptr);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array RandUniform<T>(int d0) { return RandUniform<T>(new long[] { d0 }); }
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array RandUniform<T>(int d0, int d1) { return RandUniform<T>(new long[] { d0, d1 }); }
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array RandUniform<T>(int d0, int d1, int d2) { return RandUniform<T>(new long[] { d0, d1, d2 }); }
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array RandUniform<T>(int d0, int d1, int d2, int d3) { return RandUniform<T>(new long[] { d0, d1, d2, d3 }); }
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array RandNormal<T>(long[] dims)
-		{
-			IntPtr ptr;
-			Internal.VERIFY(AFData.af_randn(out ptr, (uint)dims.Length, dims, Internal.toDType<T>()));
-			return new Array(ptr);
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array RandNormal<T>(int d0) { return RandNormal<T>(new long[] { d0 }); }
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array RandNormal<T>(int d0, int d1) { return RandNormal<T>(new long[] { d0, d1 }); }
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array RandNormal<T>(int d0, int d1, int d2) { return RandNormal<T>(new long[] { d0, d1, d2 }); }
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array RandNormal<T>(int d0, int d1, int d2, int d3) { return RandNormal<T>(new long[] { d0, d1, d2, d3 }); }
-#endif
-		#endregion
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array RandNormal<T>(params int[] dims)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFData.af_randn(out ptr, (uint)dims.Length, Internal.toLongArray(dims), Internal.toDType<T>()));
+            return new Array(ptr);
+        }
+        #endregion
 
 		#region Complex Arrays from real data
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
