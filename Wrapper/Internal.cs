@@ -32,6 +32,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 using System;
 using System.Numerics;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 
 using ArrayFire.Interop;
@@ -150,11 +151,12 @@ namespace ArrayFire
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static af_err getData<T>(System.Array arr, IntPtr ptr)
 		{
-			// lookup time was experimentally found to be negligible (<1%) compared to
-			// the time the actual copy operation takes, even for small arrays
+            // lookup time was experimentally found to be negligible (less than 1%)
+            // compared to the time the actual operation takes, even for small arrays
 			return getdatafn[arr.Rank - 1][typeof(T)](arr, ptr);
 		}
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         internal static long[] toLongArray(int[] intarr)
         {
             return System.Array.ConvertAll(intarr, x => (long)x);
@@ -165,5 +167,11 @@ namespace ArrayFire
 		{
 			if (err != af_err.AF_SUCCESS) throw new ArrayFireException(err);
 		}
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static UIntPtr sizeOfArray(System.Array arr)
+        {
+            return (UIntPtr)(Marshal.SizeOf(arr.GetType().GetElementType()) * arr.Length);
+        }
     }
 }
