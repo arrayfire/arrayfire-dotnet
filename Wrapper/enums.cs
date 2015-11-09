@@ -51,21 +51,4 @@ namespace ArrayFire
         DEFAULT = af_backend.AF_BACKEND_DEFAULT,
         OPENCL = af_backend.AF_BACKEND_OPENCL
     }
-
-    public struct Dim4
-	{
-		public readonly int D0, D1, D2, D3;
-		public Dim4(int d0, int d1, int d2, int d3)
-		{
-			D0 = d0;
-			D1 = d1;
-			D2 = d2;
-			D3 = d3;
-		}
-	}
-
-	public class ArrayFireException : Exception
-	{
-		public ArrayFireException(af_err message) : base(Internal.getError(message)) { }
-    }
 }

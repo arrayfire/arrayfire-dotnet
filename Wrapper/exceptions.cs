@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -30,21 +30,37 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 using System;
-using System.Numerics;
-using System.Runtime.CompilerServices;
 
 using ArrayFire.Interop;
 
 namespace ArrayFire
 {
-	public static class Vector
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array Dot(Array lhs, Array rhs, bool lconj = false, bool rconj = false)
-		{
-			IntPtr ptr;
-			Internal.VERIFY(AFBlas.af_dot(out ptr, lhs._ptr, rhs._ptr, lconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE, rconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE));
-			return new Array(ptr);
-		}
-	}
+    public class ArrayFireException : Exception
+    {
+        public ArrayFireException(af_err message) : base(getError(message)) { }
+
+        private static string getError(af_err err)
+        {
+            switch (err)
+            {
+                case af_err.AF_SUCCESS: return "Success";
+                case af_err.AF_ERR_INTERNAL: return "Internal error";
+                case af_err.AF_ERR_NO_MEM: return "Device out of memory";
+                case af_err.AF_ERR_DRIVER: return "Driver not available or incompatible";
+                case af_err.AF_ERR_RUNTIME: return "Runtime error ";
+                case af_err.AF_ERR_INVALID_ARRAY: return "Invalid array";
+                case af_err.AF_ERR_ARG: return "Invalid input argument";
+                case af_err.AF_ERR_SIZE: return "Invalid input size";
+                case af_err.AF_ERR_DIFF_TYPE: return "Input types are not the same";
+                case af_err.AF_ERR_NOT_SUPPORTED: return "Function not supported";
+                case af_err.AF_ERR_NOT_CONFIGURED: return "Function not configured to build";
+                case af_err.AF_ERR_TYPE: return "Function does not support this data type";
+                case af_err.AF_ERR_NO_DBL: return "Double precision not supported for this device";
+                case af_err.AF_ERR_LOAD_LIB: return "Failed to load dynamic library";
+                case af_err.AF_ERR_LOAD_SYM: return "Failed to load symbol";
+                case af_err.AF_ERR_UNKNOWN: return "Unknown error";
+                default: return err.ToString();
+            }
+        }
+    }
 }

@@ -35,6 +35,8 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="exceptions.cs" />
+    <Compile Include="Algorithm.cs" />
     <Compile Include="Arith.cs" />
     <Compile Include="Array.cs" />
     <Compile Include="Device.cs" />
@@ -50,7 +52,7 @@
     <Compile Include="Interop\AFStatistics.cs" />
     <Compile Include="Interop\AFUtil.cs" />
     <Compile Include="Interop\Enums.cs" />
-    <Compile Include="Tiny.cs" />
+    <Compile Include="enums.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internal.cs" />
