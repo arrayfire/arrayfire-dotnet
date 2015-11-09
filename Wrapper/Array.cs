@@ -80,13 +80,24 @@ namespace ArrayFire
 			}
 		}
 
-		public Dim4 Dimensions
+		public int[] Dimensions
 		{
 			get
 			{
+                int[] result = new int[DimCount];
 				long d0, d1, d2, d3;
 				Internal.VERIFY(AFArray.af_get_dims(out d0, out d1, out d2, out d3, _ptr));
-				return new Dim4((int)d0, (int)d1, (int)d2, (int)d3);
+                result[0] = (int)d0;
+                if (result.Length > 1)
+                {
+                    result[1] = (int)d1;
+                    if (result.Length > 2)
+                    {
+                        result[2] = (int)d2;
+                        if (result.Length > 3) result[3] = (int)d3;
+                    }
+                }
+                return result;
 			}
 		}
 
