@@ -1,3 +1,4 @@
+﻿(*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -26,4 +27,18 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*)
 
+open System
+open AutoGenTool
+
+[<EntryPoint>]
+let main argv =
+
+    // generate the /ArrayFire/Interop/*.cs classes
+    Interop.generate()
+
+    // expand the for-in-do loops in the /ArrayFire/*.cs files
+    ForInDo.expand()
+
+    0 // return an integer exit code

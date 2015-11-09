@@ -1,3 +1,4 @@
+/*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -26,4 +27,24 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
+using System;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+
+using ArrayFire.Interop;
+
+namespace ArrayFire
+{
+	public static class Vector
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Dot(Array lhs, Array rhs, bool lconj = false, bool rconj = false)
+		{
+			IntPtr ptr;
+			Internal.VERIFY(AFBlas.af_dot(out ptr, lhs._ptr, rhs._ptr, lconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE, rconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE));
+			return new Array(ptr);
+		}
+	}
+}

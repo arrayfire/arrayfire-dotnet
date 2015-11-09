@@ -1,3 +1,4 @@
+﻿/*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -26,4 +27,26 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
+using System;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+
+using ArrayFire.Interop;
+
+namespace ArrayFire
+{
+    public static class Algorithm
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Complex SumAll(Array arr)
+        {
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_sum_all(out r, out i, arr._ptr));
+            return new Complex(r, i);
+        }
+
+        // TODO: Add the other algorithms
+    }
+}

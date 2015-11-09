@@ -1,3 +1,4 @@
+﻿(*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -26,4 +27,22 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*)
 
+namespace AutoGenTool
+
+module Config =
+
+    // possible values for the arrayfire include/af folder (the first one that exists gets used)
+    let INCLUDE_DIR = [
+        @"C:\Program Files\ArrayFire\v3\include\af";    // windows
+        "/usr/local/include/af"                         // osx
+    ]
+
+    // include (*.h) files not (yet) supported
+    let SKIP_INCLUDES = ["compatible"; "cuda"; "features"; "graphics"; "image"; "index"; "opencl"; "vision" ]
+
+    // path to the ArrayFire library source code (relative to this project's bin/Debug or bin/Release folders)
+    let OUTPUT_DIR = "../../../Wrapper"
+
+    let DLL_NAME = "af" // unified backend

@@ -1,3 +1,4 @@
+﻿/*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -26,4 +27,37 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
+using System;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+
+using ArrayFire.Interop;
+
+namespace ArrayFire
+{
+    public static class Device
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetBackend(Backend backend)
+        {
+            Internal.VERIFY(AFBackend.af_set_backend((af_backend)backend));
+        }
+
+        public static void PrintInfo()
+        {
+            Internal.VERIFY(AFDevice.af_info());
+        }
+
+        public static int BackendCount
+        {
+            get
+            {
+                uint res;
+                Internal.VERIFY(AFBackend.af_get_backend_count(out res));
+                return (int)res;
+            }
+        }
+    }
+}

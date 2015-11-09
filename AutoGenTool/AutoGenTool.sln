@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AutoGenTool", "AutoGenTool.fsproj", "{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}.Debug|x64.ActiveCfg = Debug|x64
+		{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}.Debug|x64.Build.0 = Debug|x64
+		{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}.Release|x64.ActiveCfg = Release|x64
+		{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

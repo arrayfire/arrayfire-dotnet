@@ -1,3 +1,4 @@
+﻿(*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -26,4 +27,35 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*)
 
+namespace AutoGenTool
+
+open System
+open System.IO
+
+type CodeWriter(file) =
+    let sw = new StreamWriter(file, false)
+    do sw.WriteLine "// This file was automatically generated using the AutoGenTool project"
+    do sw.WriteLine "// If possible, edit the tool instead of editing this file directly"
+    do sw.WriteLine ()
+    do sw.WriteLine "using System;"
+    do sw.WriteLine "using System.Text;"
+    do sw.WriteLine "using System.Numerics;"
+    do sw.WriteLine "using System.Security;"
+    do sw.WriteLine "using System.Runtime.InteropServices;"
+    do sw.WriteLine ()
+    do sw.WriteLine "namespace ArrayFire.Interop"
+    do sw.WriteLine "{"
+    let mutable tabs = "\t";
+
+    member private x.println (str:String) =
+        if str.StartsWith "}" && tabs.Length > 0 then tabs <- tabs.Substring 1
+        if str.Length > 0 then sw.WriteLine (tabs + str) else sw.WriteLine()
+        if str.EndsWith "{" then tabs <- tabs + "\t";
+
+    static member (<=-)(cw:CodeWriter, txt:string) = cw.println txt
+
+    member x.Dispose() = x.println "}"; sw.Dispose()
+
+    interface IDisposable with member x.Dispose() = x.Dispose()
