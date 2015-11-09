@@ -31,7 +31,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 using System;
 using System.Numerics;
-using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 
 using ArrayFire.Interop;
@@ -197,148 +196,148 @@ namespace ArrayFire
 		b8=bool c64=Complex f32=float f64=double s32=int s64=long u32=uint u64=ulong u8=byte s16=short u16=ushort
 	do
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, $2[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof($2)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, $2[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, $2[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof($2)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, $2[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, $2[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof($2)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, $2[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, $2[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof($2)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, $2[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 #else
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, bool[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(bool)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, bool[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, bool[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(bool)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, bool[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, bool[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(bool)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, bool[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, bool[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(bool)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, bool[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, Complex[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(Complex)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, Complex[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, Complex[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(Complex)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, Complex[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, Complex[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(Complex)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, Complex[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, Complex[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(Complex)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, Complex[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, float[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(float)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, float[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, float[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(float)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, float[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, float[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(float)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, float[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, float[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(float)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, float[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, double[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(double)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, double[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, double[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(double)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, double[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, double[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(double)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, double[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, double[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(double)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, double[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, int[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(int)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, int[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, int[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(int)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, int[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, int[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(int)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, int[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, int[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(int)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, int[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, long[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(long)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, long[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, long[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(long)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, long[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, long[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(long)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, long[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, long[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(long)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, long[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, uint[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(uint)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, uint[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, uint[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(uint)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, uint[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, uint[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(uint)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, uint[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, uint[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(uint)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, uint[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, ulong[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(ulong)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, ulong[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, ulong[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(ulong)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, ulong[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, ulong[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(ulong)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, ulong[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, ulong[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(ulong)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, ulong[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, byte[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(byte)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, byte[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, byte[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(byte)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, byte[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, byte[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(byte)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, byte[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, byte[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(byte)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, byte[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, short[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(short)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, short[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, short[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(short)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, short[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, short[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(short)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, short[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, short[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(short)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, short[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, ushort[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(ushort)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, ushort[] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, ushort[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(ushort)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, ushort[,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, ushort[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(ushort)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, ushort[,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static void WriteArray(Array arr, ushort[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, (UIntPtr)(Marshal.SizeOf(typeof(ushort)) * data.Length), af_source.afHost)); }
+		public static void WriteArray(Array arr, ushort[,,,] data) { Internal.VERIFY(AFArray.af_write_array(arr._ptr, data, Internal.sizeOfArray(data), af_source.afHost)); }
 #endif
         #endregion
 
