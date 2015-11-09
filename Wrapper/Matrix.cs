@@ -92,5 +92,44 @@ namespace ArrayFire
 			Internal.VERIFY(AFLapack.af_inverse(out ptr, arr._ptr, af_mat_prop.AF_MAT_NONE));
 			return new Array(ptr);
 		}
-	}
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array ExtractDiagonal(Array arr, int diagonalIndex = 0)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFData.af_diag_extract(out ptr, arr._ptr, diagonalIndex));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array CreateDiagonal(Array arr, int diagonalIndex = 0)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFData.af_diag_create(out ptr, arr._ptr, diagonalIndex));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Lower(Array arr, bool unitDiagonal = false)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFData.af_lower(out ptr, arr._ptr, unitDiagonal));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Upper(Array arr, bool unitDiagonal = false)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFData.af_upper(out ptr, arr._ptr, unitDiagonal));
+            return new Array(ptr);
+        }
+
+        #region Convenience methods
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Identity<T>(int dim0, int dim1) { return Data.Identity<T>(dim0, dim1); }
+
+        public static T[,] GetData<T>(Array arr) { return Data.GetData2D<T>(arr); }
+        #endregion
+    }
 }
