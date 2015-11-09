@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -37,14 +37,16 @@ using ArrayFire.Interop;
 
 namespace ArrayFire
 {
-	public static class Vector
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static Array Dot(Array lhs, Array rhs, bool lconj = false, bool rconj = false)
-		{
-			IntPtr ptr;
-			Internal.VERIFY(AFBlas.af_dot(out ptr, lhs._ptr, rhs._ptr, lconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE, rconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE));
-			return new Array(ptr);
-		}
-	}
+    public static class Algorithm
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Complex SumAll(Array arr)
+        {
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_sum_all(out r, out i, arr._ptr));
+            return new Complex(r, i);
+        }
+
+        // TODO: Add the other algorithms
+    }
 }

@@ -38,7 +38,7 @@ using ArrayFire.Interop;
 
 namespace ArrayFire
 {
-	internal static class Internal // shared functionality
+    internal static class Internal // shared functionality
 	{
 		private static Dictionary<af_dtype, Type> dtype2clr;
 		private static Dictionary<Type, af_dtype> clr2dtype;
@@ -165,29 +165,5 @@ namespace ArrayFire
 		{
 			if (err != af_err.AF_SUCCESS) throw new ArrayFireException(err);
 		}
-
-        internal static string getError(af_err err)
-        {
-            switch (err)
-            {
-                case af_err.AF_SUCCESS: return "Success";
-                case af_err.AF_ERR_INTERNAL: return "Internal error";
-                case af_err.AF_ERR_NO_MEM: return "Device out of memory";
-                case af_err.AF_ERR_DRIVER: return "Driver not available or incompatible";
-                case af_err.AF_ERR_RUNTIME: return "Runtime error ";
-                case af_err.AF_ERR_INVALID_ARRAY: return "Invalid array";
-                case af_err.AF_ERR_ARG: return "Invalid input argument";
-                case af_err.AF_ERR_SIZE: return "Invalid input size";
-                case af_err.AF_ERR_DIFF_TYPE: return "Input types are not the same";
-                case af_err.AF_ERR_NOT_SUPPORTED: return "Function not supported";
-                case af_err.AF_ERR_NOT_CONFIGURED: return "Function not configured to build";
-                case af_err.AF_ERR_TYPE: return "Function does not support this data type";
-                case af_err.AF_ERR_NO_DBL: return "Double precision not supported for this device";
-                case af_err.AF_ERR_LOAD_LIB: return "Failed to load dynamic library";
-                case af_err.AF_ERR_LOAD_SYM: return "Failed to load symbol";
-                case af_err.AF_ERR_UNKNOWN: return "Unknown error";
-                default: return err.ToString();
-            }
-        }
     }
 }
