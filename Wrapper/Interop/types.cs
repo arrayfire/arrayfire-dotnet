@@ -14,7 +14,28 @@ namespace ArrayFire.Interop
 		internal const string dll = @"af";
 	}
 
-	public enum af_err
+    [StructLayout(LayoutKind.Sequential)]
+    public struct af_seq
+    {
+        public af_seq(double begin, double end, double step)
+        {
+            this.begin = begin;
+            this.end = end;
+            this.step = step;
+        }
+
+        // the C-API uses doubles so we have to do the same
+        public double begin;
+        public double end;
+        public double step;
+
+        public static readonly af_seq Span = new af_seq(1, 1, 0); // as defined in include/af/seq.h
+
+        // implicit conversion from a number, only works in C# (not in F#)
+        public static implicit operator af_seq(double begin) { return new af_seq(begin, begin, 1); }
+    }
+
+    public enum af_err
 	{
 		///
 		/// The function returned successfully
