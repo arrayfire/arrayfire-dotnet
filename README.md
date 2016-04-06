@@ -27,12 +27,10 @@ Contents
 Usage
 ----------------
 
-- TODO
+- Refer to the Examples folder.
 
 Documentation
 ---------------
-- TODO
 
-License
----------------
-- TODO
+- In progress.
+
