@@ -62,8 +62,9 @@ namespace ArrayFire
 		#region Sizes, Dimensions, Type
 		public int DimCount
 		{
-			get
-			{
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
 				uint res;
 				Internal.VERIFY(AFArray.af_get_numdims(out res, _ptr));
 				return (int)res;
@@ -72,8 +73,9 @@ namespace ArrayFire
 
 		public int ElemCount
 		{
-			get
-			{
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
 				long res;
 				Internal.VERIFY(AFArray.af_get_elements(out res, _ptr));
 				return (int)res;
@@ -82,8 +84,9 @@ namespace ArrayFire
 
 		public int[] Dimensions
 		{
-			get
-			{
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
                 int[] result = new int[DimCount];
 				long d0, d1, d2, d3;
 				Internal.VERIFY(AFArray.af_get_dims(out d0, out d1, out d2, out d3, _ptr));
@@ -103,8 +106,9 @@ namespace ArrayFire
 
 		public Type ElemType
 		{
-			get
-			{
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get
+            {
 				af_dtype dtype;
 				Internal.VERIFY(AFArray.af_get_type(out dtype, _ptr));
 				return Internal.toClrType(dtype);
@@ -176,6 +180,63 @@ namespace ArrayFire
 		~Array() { Dispose(false); }
 
 		public void Dispose() { Dispose(true); }
-		#endregion
-	}
+        #endregion
+
+        #region Indexing
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private Array index(params af_seq[] seqs)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFIndex.af_index(out ptr, this._ptr, (uint)seqs.Length, seqs));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private void assign(Array other, params af_seq[] seqs)
+        {
+            IntPtr res = this._ptr;
+            Internal.VERIFY(AFIndex.af_assign_seq(ref res, this._ptr, (uint)seqs.Length, seqs, other._ptr));
+        }
+
+        /* We could have done this instead:
+                                            public Array this[params af_seq[] seqs]
+                                            {
+                                                get { return subarray(seqs); }
+                                                set { assign(value, seqs); }
+                                            }
+        But F# doesn't support it :/
+        I'm reporting the bug to the FSharp team but in the meantime we need the following overloads: */
+
+        public Array this[af_seq a]
+        {
+            get { return index(a); }
+            set { assign(value, a); }
+        }
+
+        public Array this[af_seq a, af_seq b]
+        {
+            get { return index(a, b); }
+            set { assign(value, a, b); }
+        }
+
+        public Array this[af_seq a, af_seq b, af_seq c]
+        {
+            get { return index(a, b, c); }
+            set { assign(value, a, b, c); }
+        }
+
+        public Array this[af_seq a, af_seq b, af_seq c, af_seq d]
+        {
+            get { return index(a, b, c, d); }
+            set { assign(value, a, b, c, d); }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Array Rows(int first, int last) { return this[Util.Seq(first, last), Util.Span]; }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Array Cols(int first, int last) { return this[Util.Span, Util.Seq(first, last)]; }
+    }
+    #endregion
 }
+

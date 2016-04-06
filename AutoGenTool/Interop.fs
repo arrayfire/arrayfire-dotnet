@@ -1,4 +1,4 @@
-﻿(*
+﻿    (*
 Copyright (c) 2015, ArrayFire
 Copyright (c) 2015, Steven Burns (royalstream@hotmail.com)
 All rights reserved.
@@ -43,16 +43,10 @@ open Utils
 // generate the /ArrayFire/Interop/*.cs classes
 module Interop =
 
-    let private fixTypes str =
-        [   "unsigned",     "uint";
-            "intl",         "long";
-            "uintl",        "ulong"
-        ] |> List.fold (fun s x -> Regex.Replace(s, @"\b" + (fst x) + @"\b", snd x)) str
-
-    let private fixParamName str =
-        [   "in",   "input";
-            "out",  "output"
-        ] |> List.fold (fun s x -> Regex.Replace(s, @"\b" + (fst x) + "$", snd x)) str // "$" to anchor to the end
+    let private fixTypes =
+        replaceWord Anywhere "unsigned" "uint" >> 
+        replaceWord Anywhere "intl" "long" >> 
+        replaceWord Anywhere "uintl" "ulong"
 
     let private transformParameter (param:string) =
         let ismatch pat = Regex.IsMatch(param, "^" + pat + "$")
@@ -64,6 +58,7 @@ module Interop =
                 "(?:const\s+)?af_array\s+(\w+)",                "IntPtr array_$1";
                 // array inputs:
                 "const\s+af_array\s*\*\s*(?:const\s+)?(\w+)",   "[In] IntPtr[] array_$1";
+                "const\s+af_seq\s*\*\s*(?:const\s+)?(\w+)",     "[In] af_seq[] $1";
                 "const\s+dim_t\s*\*\s*(?:const\s+)?(\w+)",      "[In] long[] dim_$1";
                 "const\s+void\s*\*\s*(?:const\s+)?(\w+)",       "[In] T[_] $1"
                 "const\s+char\s*\*\s*(?:const\s+)?(\w+)",       "string $1";
@@ -81,8 +76,16 @@ module Interop =
                 // trivial-case outputs:
                 "(\w+)\s*\*\s*(\w+)",                           "out $1 $2";
             ] |> List.tryFind (fst >> ismatch) with
-        | Some (pat, rep) -> Regex.Replace(param, pat, rep) |> fixParamName
+        | Some (pat, rep) -> 
+            Regex.Replace(param, pat, rep) 
+            |> replaceWord LastWord "in" "input"
+            |> replaceWord LastWord "out" "output"
         | None -> "???" + param + "???"
+
+    let private finalFixes api str =
+        if api = "af_assign_seq" then replaceWord FirstWord "out" "ref" str
+        else if str.Contains("af_index_t") && not (str.Contains "???") then replaceWord Anywhere "af_index_t" "???af_index_t???" str
+        else str
 
     let private getFileMatches (file:string) =
         let matches =
@@ -92,7 +95,7 @@ module Interop =
             for mat in matches do
                 let apiname = mat.Groups.[1].Value
                 let parcaps = mat.Groups.[2].Captures
-                yield apiname, [ for cap in parcaps -> cap.Value.Trim() |> fixTypes |> transformParameter ] |> String.concat ", "
+                yield apiname, [ for cap in parcaps -> cap.Value.Trim() |> fixTypes |> transformParameter |> finalFixes apiname ] |> String.concat ", "
         } |> Seq.toList // lazy -> eager (release regex/match resources)
 
     let private getEnums (file:string) =
@@ -146,20 +149,19 @@ module Interop =
                 cw <=- "{"
                 let mutable is1st = true
                 for api, pars in matches do
-                    let unsupp = pars.Contains("???")
+                    let unsupported = pars.Contains("???")
                     let versions =
-                        if not unsupp && pars.Contains("T[_]") then
-                            let add x y = y + x
+                        if not unsupported && pars.Contains("T[_]") then
                             [ "bool"; "Complex"; "float"; "double"; "int"; "long"; "uint"; "ulong"; "byte"; "short"; "ushort" ]
                             |> listCartesian [ "[]"; "[,]"; "[,,]"; "[,,,]" ]
                             |> List.map (fun (x,y) -> pars.Replace("T[_]", y + x))
                         else [ pars ]
                     for vpars in versions do
                         if is1st then is1st <- false else cw <=- ""
-                        if unsupp then cw <=- "/* not yet supported:"
+                        if unsupported then cw <=- "/* not yet supported:"
                         else Console.WriteLine (" + " + api)
                         cw <=- "[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]"
-                        cw <=- "public static extern af_err " + api + "(" + vpars + ");" + (if unsupp then " */" else "")
+                        cw <=- "public static extern af_err " + api + "(" + vpars + ");" + (if unsupported then " */" else "")
                 cw <=- "}"
                 Console.WriteLine()
 
