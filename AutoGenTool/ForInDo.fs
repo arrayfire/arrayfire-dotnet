@@ -77,7 +77,7 @@ module ForInDo =
             if Regex.IsMatch(line, "^\s*#else") then
                 let addNewLine = function [one] -> [one] | many -> ""::many
                 let cutEmptyHead = function ""::rest -> rest | other -> other
-                let replaces = repls |> addNewLine |> listCartesian mats |> List.map (fun (m,r) -> replaceLU m patt r)
+                let replaces = repls |> addNewLine |> listCartesian mats |> List.map (fun (m,r) -> replaceLU patt r m)
                 processEnd rest ((cutEmptyHead replaces) @ (line::result))
             else processDo rest (line::result) patt mats (line::repls)
 

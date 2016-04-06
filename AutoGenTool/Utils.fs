@@ -42,7 +42,7 @@ module Utils =
     let listCartesian xlist ylist = xlist |> List.collect (fun x -> ylist |> List.map (fun y -> x,y))
 
     // a version of Regex.Replace that supports $Ux and $Lx as the uppercase and lowercase versions of $x where x is the group number (e.g. $U1 is the same as $1 but in lowercase)
-    let replaceLU input pattern replacement =
+    let replaceLU pattern replacement input =
         let mev (mat:Match) =
             let mutable res = mat.Result replacement
             for i = 1 to mat.Groups.Count - 1 do
@@ -65,3 +65,13 @@ module Utils =
     let saveLinesToFile (file:string) (lines:string list) =
         use sw = new StreamWriter(file, false)
         for line in lines do line.TrimEnd() |> sw.WriteLine
+
+    type WordLocation = Anywhere | FirstWord | LastWord
+
+    let replaceWord loc oldword (newword:string) input =
+        let pat = 
+            match loc with
+            | Anywhere -> @"\b" + oldword + @"\b"
+            | FirstWord -> "^" + oldword + @"\b"
+            | LastWord -> @"\b" + oldword + "$"
+        Regex.Replace(input, pat, newword)
