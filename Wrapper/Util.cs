@@ -51,6 +51,20 @@ namespace ArrayFire
 		{
 			Internal.VERIFY(AFUtil.af_print_array_gen(name, arr._ptr, precision));
 		}
-		#endregion
-	}
+        #endregion
+
+        #region Sequences
+        public static readonly af_seq Span = af_seq.Span; // for convenience
+
+        public static af_seq Seq(double begin, double end, double step = 1)
+        {
+            return new af_seq(begin, end, step);
+        }
+
+        public static af_seq Seq(int begin, int end, int step = 1)
+        {
+            return new af_seq(begin, end, step);
+        }
+        #endregion
+    }
 }

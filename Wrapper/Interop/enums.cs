@@ -9,11 +9,6 @@ using System.Runtime.InteropServices;
 
 namespace ArrayFire.Interop
 {
-	internal static class af_config // put here for convenience
-	{
-		internal const string dll = @"af";
-	}
-
 	public enum af_err
 	{
 		///

@@ -47,11 +47,13 @@
     <Compile Include="Interop\AFBlas.cs" />
     <Compile Include="Interop\AFData.cs" />
     <Compile Include="Interop\AFDevice.cs" />
+    <Compile Include="Interop\AFIndex.cs" />
     <Compile Include="Interop\AFLapack.cs" />
     <Compile Include="Interop\AFSignal.cs" />
     <Compile Include="Interop\AFStatistics.cs" />
     <Compile Include="Interop\AFUtil.cs" />
-    <Compile Include="Interop\Enums.cs" />
+    <Compile Include="Interop\enums.cs" />
+    <Compile Include="Interop\types.cs" />
     <Compile Include="enums.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
