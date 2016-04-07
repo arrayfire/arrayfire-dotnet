@@ -66,6 +66,13 @@ namespace ArrayFire.Interop
 		AF_ERR_BATCH          = 207,
 
 
+		// #if AF_API_VERSION >= 33
+		///
+		/// Input does not belong to the current device.
+		///
+		AF_ERR_DEVICE         = 208,
+		// #endif
+
 		// 300-399 Errors for missing software features
 
 		///
@@ -78,10 +85,12 @@ namespace ArrayFire.Interop
 		///
 		AF_ERR_NOT_CONFIGURED = 302,
 
+		// #if AF_API_VERSION >= 32
 		///
 		/// This build of ArrayFire is not compiled with "nonfree" algorithms
 		///
-		AFF_ERR_NONFREE       = 303,
+		AF_ERR_NONFREE        = 303,
+		// #endif
 
 		// 400-499 Errors for missing hardware features
 
@@ -97,8 +106,27 @@ namespace ArrayFire.Interop
 		AF_ERR_NO_GFX         = 402,
 
 		// 500-599 Errors specific to heterogenous API
+
+		// #if AF_API_VERSION >= 32
+		///
+		/// There was an error when loading the libraries
+		///
 		AF_ERR_LOAD_LIB       = 501,
+		// #endif
+
+		// #if AF_API_VERSION >= 32
+		///
+		/// There was an error when loading the symbols
+		///
 		AF_ERR_LOAD_SYM       = 502,
+		// #endif
+
+		// #if AF_API_VERSION >= 32
+		///
+		/// There was a mismatch between the input array and the active backend
+		///
+		AF_ERR_ARR_BKND_MISMATCH    = 503,
+		// #endif
 
 		// 900-999 Errors from upstream libraries and runtimes
 
@@ -128,6 +156,8 @@ namespace ArrayFire.Interop
 		u64,    ///< 64-bit unsigned integral values
 		// #if AF_API_VERSION >= 32
 		s16,    ///< 16-bit signed integral values
+		// #endif
+		// #if AF_API_VERSION >= 32
 		u16,    ///< 16-bit unsigned integral values
 		// #endif
 	}
@@ -218,7 +248,9 @@ namespace ArrayFire.Interop
 		AF_GRAY = 0, ///< Grayscale
 		AF_RGB,      ///< 3-channel RGB
 		AF_HSV,      ///< 3-channel HSV
+		// #if AF_API_VERSION >= 31
 		AF_YCbCr     ///< 3-channel YCbCr
+		// #endif
 	}
 
 	public enum af_mat_prop
@@ -279,16 +311,34 @@ namespace ArrayFire.Interop
 		AF_FIF_RAW          = 34    ///< FreeImage Enum for RAW Camera Image File
 	}
 
+	public enum af_homography_type
+	{
+		AF_HOMOGRAPHY_RANSAC = 0,   ///< Computes homography using RANSAC
+		AF_HOMOGRAPHY_LMEDS  = 1    ///< Computes homography using Least Median of Squares
+	}
+
 	public enum af_backend
 	{
 		AF_BACKEND_DEFAULT = 0,  ///< Default backend order: OpenCL -> CUDA -> CPU
 		AF_BACKEND_CPU     = 1,  ///< CPU a.k.a sequential algorithms
 		AF_BACKEND_CUDA    = 2,  ///< CUDA Compute Backend
-		AF_BACKEND_OPENCL  = 3,  ///< OpenCL Compute Backend
+		AF_BACKEND_OPENCL  = 4,  ///< OpenCL Compute Backend
 	}
 
 	public enum af_someenum_t
 	{
 		AF_ID = 0
+	}
+
+	public enum af_marker_type
+	{
+		AF_MARKER_NONE         = 0,
+		AF_MARKER_POINT        = 1,
+		AF_MARKER_CIRCLE       = 2,
+		AF_MARKER_SQUARE       = 3,
+		AF_MARKER_TRIANGLE     = 4,
+		AF_MARKER_CROSS        = 5,
+		AF_MARKER_PLUS         = 6,
+		AF_MARKER_STAR         = 7
 	}
 }

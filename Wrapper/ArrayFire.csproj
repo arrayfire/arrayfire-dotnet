@@ -50,6 +50,7 @@
     <Compile Include="Interop\AFData.cs" />
     <Compile Include="Interop\AFDevice.cs" />
     <Compile Include="Interop\AFIndex.cs" />
+    <Compile Include="Interop\AFInternal.cs" />
     <Compile Include="Interop\AFLapack.cs" />
     <Compile Include="Interop\AFSignal.cs" />
     <Compile Include="Interop\AFStatistics.cs" />

@@ -53,5 +53,8 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_norm(out double output, IntPtr array_in, af_norm_type type, double p, double q);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_is_lapack_available(out bool output);
 	}
 }
