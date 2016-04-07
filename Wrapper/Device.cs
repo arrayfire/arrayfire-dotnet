@@ -45,6 +45,13 @@ namespace ArrayFire
             Internal.VERIFY(AFBackend.af_set_backend((af_backend)backend));
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void SetDevice(int device)
+        {
+            Internal.VERIFY(AFDevice.af_set_device(device));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void PrintInfo()
         {
             Internal.VERIFY(AFDevice.af_info());
@@ -57,6 +64,16 @@ namespace ArrayFire
                 uint res;
                 Internal.VERIFY(AFBackend.af_get_backend_count(out res));
                 return (int)res;
+            }
+        }
+
+        public static int DeviceCount
+        {
+            get
+            {
+                int res;
+                Internal.VERIFY(AFDevice.af_get_device_count(out res));
+                return res;
             }
         }
     }
