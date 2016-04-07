@@ -18,6 +18,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\Release\</OutputPath>
@@ -27,6 +28,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,11 +49,14 @@
     <Compile Include="Interop\AFBlas.cs" />
     <Compile Include="Interop\AFData.cs" />
     <Compile Include="Interop\AFDevice.cs" />
+    <Compile Include="Interop\AFIndex.cs" />
+    <Compile Include="Interop\AFInternal.cs" />
     <Compile Include="Interop\AFLapack.cs" />
     <Compile Include="Interop\AFSignal.cs" />
     <Compile Include="Interop\AFStatistics.cs" />
     <Compile Include="Interop\AFUtil.cs" />
-    <Compile Include="Interop\Enums.cs" />
+    <Compile Include="Interop\enums.cs" />
+    <Compile Include="Interop\types.cs" />
     <Compile Include="enums.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

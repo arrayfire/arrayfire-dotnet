@@ -18,6 +18,10 @@ namespace ArrayFire.Interop
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_init();
 
+		/* not yet supported:
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_info_string(???char** str???, bool verbose); */
+
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_device_info([Out] StringBuilder d_name, [Out] StringBuilder d_platform, [Out] StringBuilder d_toolkit, [Out] StringBuilder d_compute);
 
@@ -39,10 +43,6 @@ namespace ArrayFire.Interop
 		/* not yet supported:
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_alloc_device(???void **ptr???, long dim_bytes); */
-
-		/* not yet supported:
-		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_alloc_pinned(???void **ptr???, long dim_bytes); */
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_device([Out] bool[] ptr);
@@ -176,6 +176,10 @@ namespace ArrayFire.Interop
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_device([Out] ushort[,,,] ptr);
 
+		/* not yet supported:
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_alloc_pinned(???void **ptr???, long dim_bytes); */
+
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_pinned([Out] bool[] ptr);
 
@@ -307,6 +311,142 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_free_pinned([Out] ushort[,,,] ptr);
+
+		/* not yet supported:
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_alloc_host(???void **ptr???, long dim_bytes); */
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] bool[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] Complex[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] float[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] double[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] int[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] long[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] uint[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] ulong[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] byte[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] short[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] ushort[] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] bool[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] Complex[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] float[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] double[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] int[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] long[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] uint[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] ulong[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] byte[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] short[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] ushort[,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] bool[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] Complex[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] float[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] double[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] int[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] long[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] uint[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] ulong[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] byte[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] short[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] ushort[,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] bool[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] Complex[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] float[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] double[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] int[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] long[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] uint[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] ulong[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] byte[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] short[,,,] ptr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_free_host([Out] ushort[,,,] ptr);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_device_array(out IntPtr array_arr, [In] bool[] data, uint ndims, [In] long[] dim_dims, af_dtype type);
@@ -444,6 +584,9 @@ namespace ArrayFire.Interop
 		public static extern af_err af_device_mem_info(out UIntPtr size_alloc_bytes, out UIntPtr size_alloc_buffers, out UIntPtr size_lock_bytes, out UIntPtr size_lock_buffers);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_print_mem_info(string msg, int device_id);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_device_gc();
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
@@ -457,6 +600,12 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_unlock_device_ptr(IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_lock_array(IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_unlock_array(IntPtr array_arr);
 
 		/* not yet supported:
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]

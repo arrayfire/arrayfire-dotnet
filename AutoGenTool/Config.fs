@@ -40,9 +40,7 @@ module Config =
     ]
 
     // include (*.h) files not (yet) supported
-    let SKIP_INCLUDES = ["compatible"; "cuda"; "features"; "graphics"; "image"; "index"; "opencl"; "vision" ]
+    let SKIP_INCLUDES = ["compatible"; "cuda"; "features"; "graphics"; "image"; "opencl"; "vision" ]
 
     // path to the ArrayFire library source code (relative to this project's bin/Debug or bin/Release folders)
     let OUTPUT_DIR = "../../../Wrapper"
-
-    let DLL_NAME = "af" // unified backend
