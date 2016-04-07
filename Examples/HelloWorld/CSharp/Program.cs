@@ -14,7 +14,9 @@ namespace CSharpTesting
     {
         static void Main(string[] args)
         {
-            Device.SetBackend(Backend.CPU);
+            Device.SetBackend(Backend.DEFAULT);
+            Device.PrintInfo();
+
             var arr1 = Data.RandNormal<float>(3, 3);
             var arr2 = Data.RandNormal<float>(3, 3);
             var arr3 = arr1 + arr2;
