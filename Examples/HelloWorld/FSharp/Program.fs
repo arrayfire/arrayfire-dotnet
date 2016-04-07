@@ -9,7 +9,9 @@ open ArrayFire
 [<EntryPoint>]
 let main argv = 
 
-    Device.SetBackend(Backend.CPU)
+    Device.SetBackend(Backend.DEFAULT)
+    Device.PrintInfo()
+
     let arr1 = Data.RandNormal<double>(3, 3)
     let arr2 = Data.RandNormal<double>(3, 3)
     let arr3 = arr1 + arr2
