@@ -1,10 +1,7 @@
+﻿using ArrayFire;
 using System;
-using System.Numerics;
-using System.Collections.Generic;
 
-using ArrayFire;
-
-namespace CSharpTesting
+namespace Unified__CSharp_
 {
     class Program
     {
