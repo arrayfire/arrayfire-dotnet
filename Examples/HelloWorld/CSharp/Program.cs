@@ -1,14 +1,7 @@
+﻿using ArrayFire;
 using System;
-using System.Numerics;
-using System.Collections.Generic;
 
-using ArrayFire;
-
-// If using Visual Studio 2015 you can uncomment the following lines and type Sin() instead of Arith.Sin(), Seq() instead of Util.Seq(), and so on.
-// using static ArrayFire.Arith;
-// using static ArrayFire.Util;
-
-namespace CSharpTesting
+namespace HelloWorld__CSharp_
 {
     class Program
     {
@@ -35,7 +28,6 @@ namespace CSharpTesting
             Util.Print(corner, "arr1's top-left 2x2 corner");
             arr2[Util.Seq(1, 2), Util.Seq(1, 2)] = corner;
             Util.Print(arr2, "arr2 with botton-right 2x2 corner ovewritten with the previous result");
-
         }
     }
 }
