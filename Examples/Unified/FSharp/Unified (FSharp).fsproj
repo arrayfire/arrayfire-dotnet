@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Wrapper\ArrayFire.csproj" />
+    <ProjectReference Include="..\..\..\src\Wrapper\ArrayFire.csproj" />
   </ItemGroup>
 
 </Project>
