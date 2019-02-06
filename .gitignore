@@ -11,3 +11,7 @@ Examples/Unified/CSharp/obj/
 Examples/Unified/FSharp/bin/
 Examples/Unified/FSharp/obj/
 .vs
+/src/Wrapper/bin/Debug/netstandard2.0
+/src/Wrapper/obj
+/test/ArrayFire.UnitTest/obj
+/test/ArrayFire.UnitTest/bin/Debug/netcoreapp2.2
