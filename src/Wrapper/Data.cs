@@ -346,7 +346,7 @@ namespace ArrayFire
 		public static Array RandUniform<T>(params int[] dims)
 		{
 			IntPtr ptr;
-			Internal.VERIFY(AFData.af_randu(out ptr, (uint)dims.Length, Internal.toLongArray(dims), Internal.toDType<T>()));
+			Internal.VERIFY(AFRandom.af_randu(out ptr, (uint)dims.Length, Internal.toLongArray(dims), Internal.toDType<T>()));
 			return new Array(ptr);
 		}
 
@@ -354,14 +354,14 @@ namespace ArrayFire
 		public static Array RandNormal<T>(params int[] dims)
 		{
 			IntPtr ptr;
-			Internal.VERIFY(AFData.af_randn(out ptr, (uint)dims.Length, Internal.toLongArray(dims), Internal.toDType<T>()));
+			Internal.VERIFY(AFRandom.af_randn(out ptr, (uint)dims.Length, Internal.toLongArray(dims), Internal.toDType<T>()));
 			return new Array(ptr);
 		}
 
 		public static ulong RandSeed
 		{
-			get { ulong value; Internal.VERIFY(AFData.af_get_seed(out value)); return value; }
-			set { Internal.VERIFY(AFData.af_set_seed(value)); }
+			get { ulong value; Internal.VERIFY(AFRandom.af_get_seed(out value)); return value; }
+			set { Internal.VERIFY(AFRandom.af_set_seed(value)); }
 		}
 		#endregion
 

@@ -6,12 +6,13 @@ namespace ArrayFire.UnitTest
     /// port from test\array.cpp
     /// </summary>
     [TestClass]
-    public class ArrayTest
+    public class ArrayTest : UnitTestBase
     {
         [TestMethod]
-        public void ConstructorDefault()
+        public void Creation()
         {
-            Array a;
+            var A = Data.Range<int>(2, 2);
+            Util.Print(A, "A");
         }
     }
 }

@@ -82,6 +82,12 @@ namespace ArrayFire.Interop
 		public static extern af_err af_accum(out IntPtr array_out, IntPtr array_in, int dim);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_scan(out IntPtr array_out, IntPtr array_in, int dim, af_binary_op op, bool inclusive_scan);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_scan_by_key(out IntPtr array_out, IntPtr array_key, IntPtr array_in, int dim, af_binary_op op, bool inclusive_scan);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_where(out IntPtr array_idx, IntPtr array_in);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]

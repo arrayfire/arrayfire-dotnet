@@ -76,6 +76,9 @@ namespace ArrayFire.Interop
 		public static extern af_err af_maxof(out IntPtr array_out, IntPtr array_lhs, IntPtr array_rhs, bool batch);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_clamp(out IntPtr array_out, IntPtr array_in, IntPtr array_lo, IntPtr array_hi, bool batch);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_rem(out IntPtr array_out, IntPtr array_lhs, IntPtr array_rhs, bool batch);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
