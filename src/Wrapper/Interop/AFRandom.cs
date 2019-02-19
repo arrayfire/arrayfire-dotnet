@@ -10,51 +10,52 @@ using System.Runtime.InteropServices;
 namespace ArrayFire.Interop
 {
 	[SuppressUnmanagedCodeSecurity]
-	public static class AFStatistics
+	public static class AFRandom
 	{
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_mean(out IntPtr array_out, IntPtr array_in, long dim_dim);
+		public static extern af_err af_create_random_engine(out IntPtr engine, af_random_engine_type rtype, ulong seed);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_mean_weighted(out IntPtr array_out, IntPtr array_in, IntPtr array_weights, long dim_dim);
+		public static extern af_err af_retain_random_engine(out IntPtr output, IntPtr engine);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_var(out IntPtr array_out, IntPtr array_in, bool isbiased, long dim_dim);
+		public static extern af_err af_random_engine_set_type(out IntPtr engine, af_random_engine_type rtype);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_var_weighted(out IntPtr array_out, IntPtr array_in, IntPtr array_weights, long dim_dim);
+		public static extern af_err af_random_engine_get_type(out af_random_engine_type rtype, IntPtr engine);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_stdev(out IntPtr array_out, IntPtr array_in, long dim_dim);
+		public static extern af_err af_random_uniform(out IntPtr array_out, uint ndims, [In] long[] dim_dims, af_dtype type, IntPtr engine);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_cov(out IntPtr array_out, IntPtr array_X, IntPtr array_Y, bool isbiased);
+		public static extern af_err af_random_normal(out IntPtr array_out, uint ndims, [In] long[] dim_dims, af_dtype type, IntPtr engine);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_median(out IntPtr array_out, IntPtr array_in, long dim_dim);
+		public static extern af_err af_random_engine_set_seed(out IntPtr engine, ulong seed);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_mean_all(out double real, out double imag, IntPtr array_in);
+		public static extern af_err af_get_default_random_engine(out IntPtr engine);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_mean_all_weighted(out double real, out double imag, IntPtr array_in, IntPtr array_weights);
+		public static extern af_err af_set_default_random_engine_type(af_random_engine_type rtype);
+
+		/* not yet supported:
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_random_engine_get_seed(???ulong * const seed???, af_random_engine engine); */
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_var_all(out double realVal, out double imagVal, IntPtr array_in, bool isbiased);
+		public static extern af_err af_release_random_engine(IntPtr engine);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_var_all_weighted(out double realVal, out double imagVal, IntPtr array_in, IntPtr array_weights);
+		public static extern af_err af_randu(out IntPtr array_out, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_stdev_all(out double real, out double imag, IntPtr array_in);
+		public static extern af_err af_randn(out IntPtr array_out, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_median_all(out double realVal, out double imagVal, IntPtr array_in);
+		public static extern af_err af_set_seed(ulong seed);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_corrcoef(out double realVal, out double imagVal, IntPtr array_X, IntPtr array_Y);
-
-		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_topk(out IntPtr array_values, out IntPtr array_indices, IntPtr array_in, int k, int dim, af_topk_function order);
+		public static extern af_err af_get_seed(out ulong seed);
 	}
 }

@@ -43,4 +43,4 @@ module Config =
     let SKIP_INCLUDES = ["compatible"; "cuda"; "features"; "graphics"; "image"; "opencl"; "vision" ]
 
     // path to the ArrayFire library source code (relative to this project's bin/Debug or bin/Release folders)
-    let OUTPUT_DIR = "../../../Wrapper"
+    let OUTPUT_DIR = "../../../src/Wrapper"

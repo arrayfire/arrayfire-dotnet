@@ -607,6 +607,9 @@ namespace ArrayFire.Interop
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_unlock_array(IntPtr array_arr);
 
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_is_locked_array(out bool res, IntPtr array_arr);
+
 		/* not yet supported:
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_get_device_ptr(???void **ptr???, IntPtr array_arr); */

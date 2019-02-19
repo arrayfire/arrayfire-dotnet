@@ -31,18 +31,6 @@ namespace ArrayFire.Interop
 		public static extern af_err af_iota(out IntPtr array_out, uint ndims, [In] long[] dim_dims, uint t_ndims, [In] long[] dim_tdims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_randu(out IntPtr array_out, uint ndims, [In] long[] dim_dims, af_dtype type);
-
-		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_randn(out IntPtr array_out, uint ndims, [In] long[] dim_dims, af_dtype type);
-
-		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_set_seed(ulong seed);
-
-		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
-		public static extern af_err af_get_seed(out ulong seed);
-
-		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_identity(out IntPtr array_out, uint ndims, [In] long[] dim_dims, af_dtype type);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
