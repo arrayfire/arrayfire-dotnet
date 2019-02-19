@@ -159,5 +159,8 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_is_owner(out bool result, IntPtr array_arr);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_get_allocated_bytes(out UIntPtr size_bytes, IntPtr array_arr);
 	}
 }

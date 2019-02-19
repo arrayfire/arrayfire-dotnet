@@ -15,3 +15,4 @@ Examples/Unified/FSharp/obj/
 /src/Wrapper/obj
 /test/ArrayFire.UnitTest/obj
 /test/ArrayFire.UnitTest/bin/Debug/netcoreapp2.2
+/AutoGenTool/packages/FSharp.Core.4.6.2

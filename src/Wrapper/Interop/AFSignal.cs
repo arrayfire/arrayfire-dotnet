@@ -98,5 +98,17 @@ namespace ArrayFire.Interop
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_iir(out IntPtr array_y, IntPtr array_b, IntPtr array_a, IntPtr array_x);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_medfilt(out IntPtr array_out, IntPtr array_in, long dim_wind_length, long dim_wind_width, af_border_type edge_pad);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_medfilt1(out IntPtr array_out, IntPtr array_in, long dim_wind_width, af_border_type edge_pad);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_medfilt2(out IntPtr array_out, IntPtr array_in, long dim_wind_length, long dim_wind_width, af_border_type edge_pad);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_set_fft_plan_cache_size(UIntPtr size_cache_size);
 	}
 }

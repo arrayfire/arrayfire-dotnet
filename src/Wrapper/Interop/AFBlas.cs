@@ -19,6 +19,9 @@ namespace ArrayFire.Interop
 		public static extern af_err af_dot(out IntPtr array_out, IntPtr array_lhs, IntPtr array_rhs, af_mat_prop optLhs, af_mat_prop optRhs);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
+		public static extern af_err af_dot_all(out double real, out double imag, IntPtr array_lhs, IntPtr array_rhs, af_mat_prop optLhs, af_mat_prop optRhs);
+
+		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
 		public static extern af_err af_transpose(out IntPtr array_out, IntPtr array_in, bool conjugate);
 
 		[DllImport(af_config.dll, ExactSpelling = true, SetLastError = false, CallingConvention = CallingConvention.Cdecl)]
