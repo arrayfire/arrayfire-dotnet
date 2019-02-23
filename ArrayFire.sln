@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrayFire", "src\Wrapper\Ar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrayFire.UnitTest", "test\ArrayFire.UnitTest\ArrayFire.UnitTest.csproj", "{E47D6CCA-1397-4FD4-997A-A8520F74C367}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AutoGenTool", "AutoGenTool\AutoGenTool.fsproj", "{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,12 @@ Global
 		{E47D6CCA-1397-4FD4-997A-A8520F74C367}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E47D6CCA-1397-4FD4-997A-A8520F74C367}.Release|x64.ActiveCfg = Release|Any CPU
 		{E47D6CCA-1397-4FD4-997A-A8520F74C367}.Release|x64.Build.0 = Release|Any CPU
+		{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}.Debug|x64.ActiveCfg = Debug|x64
+		{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}.Debug|x64.Build.0 = Debug|x64
+		{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}.Release|Any CPU.ActiveCfg = Release|x64
+		{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}.Release|x64.ActiveCfg = Release|x64
+		{C2338C5E-AEC9-4AA0-BEE1-A75EB26A172D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
