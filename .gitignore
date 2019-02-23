@@ -16,3 +16,5 @@ Examples/Unified/FSharp/obj/
 /test/ArrayFire.UnitTest/obj
 /test/ArrayFire.UnitTest/bin/Debug/netcoreapp2.2
 /AutoGenTool/packages/FSharp.Core.4.6.2
+/test/ArrayFire.UnitTest/bin/Release/netcoreapp2.2
+/src/Wrapper/bin
