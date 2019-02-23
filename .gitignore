@@ -18,3 +18,4 @@ Examples/Unified/FSharp/obj/
 /AutoGenTool/packages/FSharp.Core.4.6.2
 /test/ArrayFire.UnitTest/bin/Release/netcoreapp2.2
 /src/Wrapper/bin
+/packages/FSharp.Core.4.6.2
