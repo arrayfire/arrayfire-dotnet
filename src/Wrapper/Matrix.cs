@@ -40,7 +40,15 @@ namespace ArrayFire
 
 	public static class Matrix
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array MatMul(Array lhs, Array rhs, bool lconj = false, bool rconj = false)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFBlas.af_matmul(out ptr, lhs._ptr, rhs._ptr, lconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE, rconj ? af_mat_prop.AF_MAT_CONJ : af_mat_prop.AF_MAT_NONE));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Array Multiply(Array lhs, Array rhs, MatMulOp lop = MatMulOp.None, MatMulOp rop = MatMulOp.None)
 		{
 			IntPtr ptr;

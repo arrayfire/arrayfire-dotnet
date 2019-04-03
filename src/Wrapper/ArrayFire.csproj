@@ -3,17 +3,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>Haiping Chen</Authors>
     <Copyright>BSD-3</Copyright>
     <RepositoryType>git</RepositoryType>
     <Description>ArrayFire is a high performance library for parallel computing with an easy-to-use API. It enables users to write scientific computing code that is portable across CUDA, OpenCL and CPU devices. This project provides .NET bindings for the ArrayFire library.</Description>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/arrayfire/arrayfire-dotnet/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/arrayfire/arrayfire-dotnet</PackageProjectUrl>
     <PackageIconUrl>https://avatars3.githubusercontent.com/u/5395442?s=200&amp;v=4</PackageIconUrl>
     <RepositoryUrl>https://github.com/arrayfire/arrayfire-dotnet</RepositoryUrl>
     <PackageTags>ArrayFire</PackageTags>
-    <PackageReleaseNotes>Upgrade Interop to arrayfire v3.6.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added Matrix.MatMul</PackageReleaseNotes>
     <Company>ArrayFire (https://www.arrayfire.com)</Company>
   </PropertyGroup>
 
