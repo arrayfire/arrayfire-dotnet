@@ -40,6 +40,78 @@ namespace ArrayFire
     public static class Algorithm
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Sum(Array arr, int dim = -1)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_sum(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions)));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Sum(Array arr, int dim, double nanval)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_sum_nan(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions), nanval));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Product(Array arr, int dim = -1)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_product(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions)));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Product(Array arr, int dim, double nanval)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_product_nan(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions), nanval));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Min(Array arr, int dim = -1)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_min(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions)));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Max(Array arr, int dim = -1)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_max(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions)));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array AllTrue(Array arr, int dim = -1)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_all_true(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions)));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array AnyTrue(Array arr, int dim = -1)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_any_true(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions)));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Count(Array arr, int dim = -1)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_count(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions)));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Complex SumAll(Array arr)
         {
             double r, i;
@@ -48,30 +120,217 @@ namespace ArrayFire
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static object MinAll<T>(Array arr)
+        public static Complex SumAll(Array arr, double nanval)
         {
-            af_dtype dtype = Internal.toDType<T>();
             double r, i;
-            Internal.VERIFY(AFAlgorithm.af_min_all(out r, out i, arr._ptr));
-            if (dtype == af_dtype.c32 || dtype == af_dtype.c64) {
-                return new Complex(r, i);
-            } else {
-                return Convert.ChangeType(r, Internal.toClrType(dtype));
-            }
+            Internal.VERIFY(AFAlgorithm.af_sum_nan_all(out r, out i, arr._ptr, nanval));
+            return new Complex(r, i);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static object MaxAll<T>(Array arr)
+        public static Complex ProductAll(Array arr)
         {
-            af_dtype dtype = Internal.toDType<T>();
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_product_all(out r, out i, arr._ptr));
+            return new Complex(r, i);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Complex ProductAll(Array arr, double nanval)
+        {
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_product_nan_all(out r, out i, arr._ptr, nanval));
+            return new Complex(r, i);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Complex MinAll(Array arr)
+        {
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_min_all(out r, out i, arr._ptr));
+            return new Complex(r, i);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Complex MaxAll(Array arr)
+        {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_max_all(out r, out i, arr._ptr));
-            if (dtype == af_dtype.c32 || dtype == af_dtype.c64) {
-                return new Complex(r, i);
-            } else {
-                return Convert.ChangeType(r, Internal.toClrType(dtype));
-            }
+            return new Complex(r, i);
         }
-        // TODO: Add the other algorithms
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Complex AllTrueAll(Array arr)
+        {
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_all_true_all(out r, out i, arr._ptr));
+            return new Complex(r, i);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Complex AnyTrueAll(Array arr)
+        {
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_any_true_all(out r, out i, arr._ptr));
+            return new Complex(r, i);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Complex CountAll(Array arr)
+        {
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_count_all(out r, out i, arr._ptr));
+            return new Complex(r, i);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Min(Array arr, out Array idx ,int dim = -1)
+        {
+            IntPtr outPtr;
+            IntPtr idxPtr;
+            Internal.VERIFY(AFAlgorithm.af_imin(out outPtr, out idxPtr, arr._ptr, getFNSD(dim, arr.Dimensions)));
+            idx = new Array(idxPtr);
+            return new Array(outPtr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Max(Array arr, out Array idx, int dim = -1)
+        {
+            IntPtr outPtr;
+            IntPtr idxPtr;
+            Internal.VERIFY(AFAlgorithm.af_imax(out outPtr, out idxPtr, arr._ptr, getFNSD(dim, arr.Dimensions)));
+            idx = new Array(idxPtr);
+            return new Array(outPtr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Complex MinAll(Array arr, out uint idx)
+        {
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_imin_all(out r, out i, out idx ,arr._ptr));
+            return new Complex(r, i);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Complex MaxAll(Array arr, out uint idx)
+        {
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_imax_all(out r, out i, out idx, arr._ptr));
+            return new Complex(r, i);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Accumulate(Array arr, int dim = -1)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_accum(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions)));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Scan(Array arr, int dim, af_binary_op op, bool inclusive_scan = true)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_scan(out ptr, arr._ptr, getFNSD(dim, arr.Dimensions), op, inclusive_scan));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array ScanByKey(Array key, Array arr, int dim, af_binary_op op, bool inclusive_scan = true)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_scan_by_key(out ptr, key._ptr, arr._ptr, getFNSD(dim, arr.Dimensions), op, inclusive_scan));
+            return new Array(ptr);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Where(Array arr)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_where(out ptr, arr._ptr));
+            return new Array(ptr);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Diff1(Array arr, int dim = 0)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_diff1(out ptr, arr._ptr, dim));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Diff2(Array arr, int dim = 0)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_diff2(out ptr, arr._ptr, dim));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Sort(Array arr, uint dim = 0, bool isAscending = true)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_sort(out ptr, arr._ptr, dim, isAscending));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Sort(Array arr, out Array indices, uint dim = 0, bool isAscending = true)
+        {
+            IntPtr outPtr, indPtr;
+            Internal.VERIFY(AFAlgorithm.af_sort_index(out outPtr, out indPtr , arr._ptr, dim, isAscending));
+            indices = new Array(indPtr);
+            return new Array(outPtr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Sort(out Array outValues, Array keys, Array values, uint dim = 0, bool isAscending = true)
+        {
+            IntPtr outKeyPtr;
+            IntPtr outValPtr;
+            Internal.VERIFY(AFAlgorithm.af_sort_by_key(out outKeyPtr, out outValPtr, keys._ptr, values._ptr, dim, isAscending));
+            outValues = new Array(outValPtr);
+            return new Array(outKeyPtr);
+        }
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array SetUnique(Array arr, bool isSorted = false)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_set_unique(out ptr, arr._ptr, isSorted));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array SetUnion(Array arr1, Array arr2, bool isUnique = false)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_set_union(out ptr, arr1._ptr, arr2._ptr, isUnique));
+            return new Array(ptr);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array SetIntersect(Array arr1, Array arr2, bool isUnique = false)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFAlgorithm.af_set_intersect(out ptr, arr1._ptr, arr2._ptr, isUnique));
+            return new Array(ptr);
+        }
+
+        /// Get the first non-zero dimension
+        private static int getFNSD(int dim, int[] dims) 
+        {
+            if (dim >= 0) return dim;
+
+            for (int i = 0; i < 4; ++i)
+            {
+                if (dims[i] > 1)
+                {
+                    return i;
+                }
+            }
+            return 0;
+        }
     }
 }
