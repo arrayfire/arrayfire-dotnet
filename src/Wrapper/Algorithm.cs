@@ -52,41 +52,11 @@ namespace ArrayFire
         {
             af_dtype dtype = Internal.toDType<T>();
             double r, i;
-            switch(dtype)
-            {
-                case af_dtype.f32:
-                    Internal.VERIFY(AFAlgorithm.af_min_all(out r, out _, arr._ptr));
-                    return (float)r;
-                case af_dtype.f64:
-                    Internal.VERIFY(AFAlgorithm.af_min_all(out r, out _, arr._ptr));
-                    return (double)r;
-                case af_dtype.s32:
-                    Internal.VERIFY(AFAlgorithm.af_min_all(out r, out _, arr._ptr));
-                    return (int)r;
-                case af_dtype.s64:
-                    Internal.VERIFY(AFAlgorithm.af_min_all(out r, out _, arr._ptr));
-                    return (long)r;
-                case af_dtype.u32:
-                    Internal.VERIFY(AFAlgorithm.af_min_all(out r, out _, arr._ptr));
-                    return (uint)r;
-                case af_dtype.u64:
-                    Internal.VERIFY(AFAlgorithm.af_min_all(out r, out _, arr._ptr));
-                    return (ulong)r;
-                case af_dtype.u8:
-                    Internal.VERIFY(AFAlgorithm.af_min_all(out r, out _, arr._ptr));
-                    return (byte)r;
-                case af_dtype.s16:
-                    Internal.VERIFY(AFAlgorithm.af_min_all(out r, out _, arr._ptr));
-                    return (short)r;
-                case af_dtype.u16:
-                    Internal.VERIFY(AFAlgorithm.af_min_all(out r, out _, arr._ptr));
-                    return (ushort)r;
-                case af_dtype.c32:
-                case af_dtype.c64:
-                    Internal.VERIFY(AFAlgorithm.af_min_all(out r, out i, arr._ptr));
-                    return new Complex(r, i);
-                default:
-                    throw new NotSupportedException("Data type not supported");
+            Internal.VERIFY(AFAlgorithm.af_min_all(out r, out i, arr._ptr));
+            if (dtype == af_dtype.c32 || dtype == af_dtype.c64) {
+                return new Complex(r, i);
+            } else {
+                return Convert.ChangeType(r, Internal.toClrType(dtype));
             }
         }
 
@@ -95,41 +65,11 @@ namespace ArrayFire
         {
             af_dtype dtype = Internal.toDType<T>();
             double r, i;
-            switch(dtype)
-            {
-                case af_dtype.f32:
-                    Internal.VERIFY(AFAlgorithm.af_max_all(out r, out _, arr._ptr));
-                    return (float)r;
-                case af_dtype.f64:
-                    Internal.VERIFY(AFAlgorithm.af_max_all(out r, out _, arr._ptr));
-                    return (double)r;
-                case af_dtype.s32:
-                    Internal.VERIFY(AFAlgorithm.af_max_all(out r, out _, arr._ptr));
-                    return (int)r;
-                case af_dtype.s64:
-                    Internal.VERIFY(AFAlgorithm.af_max_all(out r, out _, arr._ptr));
-                    return (long)r;
-                case af_dtype.u32:
-                    Internal.VERIFY(AFAlgorithm.af_max_all(out r, out _, arr._ptr));
-                    return (uint)r;
-                case af_dtype.u64:
-                    Internal.VERIFY(AFAlgorithm.af_max_all(out r, out _, arr._ptr));
-                    return (ulong)r;
-                case af_dtype.u8:
-                    Internal.VERIFY(AFAlgorithm.af_max_all(out r, out _, arr._ptr));
-                    return (byte)r;
-                case af_dtype.s16:
-                    Internal.VERIFY(AFAlgorithm.af_max_all(out r, out _, arr._ptr));
-                    return (short)r;
-                case af_dtype.u16:
-                    Internal.VERIFY(AFAlgorithm.af_max_all(out r, out _, arr._ptr));
-                    return (ushort)r;
-                case af_dtype.c32:
-                case af_dtype.c64:
-                    Internal.VERIFY(AFAlgorithm.af_max_all(out r, out i, arr._ptr));
-                    return new Complex(r, i);
-                default:
-                    throw new NotSupportedException("Data type not supported");
+            Internal.VERIFY(AFAlgorithm.af_max_all(out r, out i, arr._ptr));
+            if (dtype == af_dtype.c32 || dtype == af_dtype.c64) {
+                return new Complex(r, i);
+            } else {
+                return Convert.ChangeType(r, Internal.toClrType(dtype));
             }
         }
         // TODO: Add the other algorithms
