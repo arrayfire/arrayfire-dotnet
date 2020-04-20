@@ -47,6 +47,31 @@ namespace ArrayFire
             return new Complex(r, i);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static object MinAll<T>(Array arr)
+        {
+            af_dtype dtype = Internal.toDType<T>();
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_min_all(out r, out i, arr._ptr));
+            if (dtype == af_dtype.c32 || dtype == af_dtype.c64) {
+                return new Complex(r, i);
+            } else {
+                return Convert.ChangeType(r, Internal.toClrType(dtype));
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static object MaxAll<T>(Array arr)
+        {
+            af_dtype dtype = Internal.toDType<T>();
+            double r, i;
+            Internal.VERIFY(AFAlgorithm.af_max_all(out r, out i, arr._ptr));
+            if (dtype == af_dtype.c32 || dtype == af_dtype.c64) {
+                return new Complex(r, i);
+            } else {
+                return Convert.ChangeType(r, Internal.toClrType(dtype));
+            }
+        }
         // TODO: Add the other algorithms
     }
 }

@@ -517,5 +517,35 @@ namespace ArrayFire
             return new Array(ptr);
         }
         #endregion
+
+        #region Moddims
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Moddims(Array arr, params int[] dims)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFData.af_moddims(out ptr, arr._ptr, (uint) dims.Length , Internal.toLongArray(dims)));
+            return new Array(ptr);
+        }
+        #endregion
+
+        #region Flat
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Flat(Array arr)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFData.af_flat(out ptr, arr._ptr));
+            return new Array(ptr);
+        }
+        #endregion
+
+        #region Flip
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Array Flip(Array arr, uint dim)
+        {
+            IntPtr ptr;
+            Internal.VERIFY(AFData.af_flip(out ptr, arr._ptr, dim));
+            return new Array(ptr);
+        }
+        #endregion
     }
 }

@@ -30,6 +30,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 using System;
+using System.Numerics;
 using System.Threading;
 using System.Runtime.CompilerServices;
 
@@ -163,6 +164,881 @@ namespace ArrayFire
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Array operator ^(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_bitxor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
 #endif
+
+#if _
+for (\w+) in
+    bool Complex float double int long uint ulong byte short ushort
+do
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, $1 rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<$1>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, $1 rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<$1>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, $1 rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<$1>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, $1 rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<$1>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, bool rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<bool>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, bool rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<bool>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, bool rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<bool>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, bool rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<bool>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, Complex rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<Complex>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, Complex rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<Complex>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, Complex rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<Complex>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, Complex rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<Complex>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, float rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<float>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, float rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<float>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, float rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<float>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, float rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<float>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, double rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<double>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, double rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<double>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, double rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<double>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, double rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<double>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, int rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<int>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, int rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<int>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, int rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<int>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, int rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<int>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, long rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<long>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, long rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<long>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, long rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<long>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, long rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<long>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, uint rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<uint>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, uint rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<uint>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, uint rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<uint>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, uint rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<uint>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, ulong rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ulong>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, ulong rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ulong>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, ulong rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ulong>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, ulong rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ulong>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, byte rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<byte>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, byte rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<byte>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, byte rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<byte>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, byte rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<byte>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, short rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<short>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, short rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<short>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, short rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<short>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, short rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<short>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Array lhs, ushort rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ushort>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Array lhs, ushort rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ushort>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Array lhs, ushort rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ushort>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Array lhs, ushort rhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ushort>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+#endif
+
+#if _
+for (\w+) in
+    bool Complex float double int long uint ulong byte short ushort
+do
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +($1 rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<$1>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -($1 rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<$1>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *($1 rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<$1>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /($1 rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<$1>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+#else
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(bool rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<bool>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(bool rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<bool>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(bool rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<bool>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(bool rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<bool>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(Complex rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<Complex>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(Complex rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<Complex>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(Complex rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<Complex>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(Complex rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<Complex>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(float rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<float>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(float rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<float>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(float rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<float>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(float rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<float>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(double rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<double>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(double rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<double>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(double rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<double>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(double rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<double>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(int rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<int>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(int rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<int>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(int rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<int>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(int rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<int>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(long rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<long>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(long rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<long>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(long rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<long>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(long rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<long>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(uint rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<uint>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(uint rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<uint>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(uint rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<uint>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(uint rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<uint>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(ulong rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ulong>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(ulong rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ulong>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(ulong rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ulong>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(ulong rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ulong>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(byte rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<byte>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(byte rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<byte>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(byte rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<byte>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(byte rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<byte>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(short rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<short>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(short rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<short>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(short rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<short>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(short rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<short>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator +(ushort rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ushort>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_add(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator -(ushort rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ushort>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_sub(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator *(ushort rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ushort>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_mul(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Array operator /(ushort rhs, Array lhs)
+    {
+        IntPtr ptr;
+        var rhs_array = Data.Constant<ushort>(rhs, lhs.Dimensions);
+        Internal.VERIFY(AFArith.af_div(out ptr, lhs._ptr, rhs_array._ptr, false));
+        return new Array(ptr);
+    }
+#endif
+
 		#endregion
 
 		#region IDisposable Support
