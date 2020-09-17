@@ -21,3 +21,5 @@ Examples/Unified/FSharp/obj/
 /packages/FSharp.Core.4.6.2
 /Examples/GettingStarted/Integer/CSharp/bin
 /Examples/GettingStarted/Integer/CSharp/obj
+/Examples/GettingStarted/Integer/FSharp/obj
+/Examples/GettingStarted/Integer/FSharp/bin/Debug/netcoreapp2.2
