@@ -112,75 +112,117 @@ namespace ArrayFire
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex SumAll(Array arr)
+        public static Complex SumAll(Array arr) => SumAll<Complex>(arr);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static returnType SumAll<returnType>(Array arr)
         {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_sum_all(out r, out i, arr._ptr));
-            return new Complex(r, i);
+            if (typeof(returnType) == typeof(Complex))
+                return (returnType)Convert.ChangeType(new Complex(r, i), typeof(returnType));
+            else
+                return (returnType)Convert.ChangeType(r, typeof(returnType));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex SumAll(Array arr, double nanval)
+        public static Complex SumAll(Array arr, double nanval) => SumAll<Complex>(arr, nanval);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static returnType SumAll<returnType>(Array arr, double nanval)
         {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_sum_nan_all(out r, out i, arr._ptr, nanval));
-            return new Complex(r, i);
+            if (typeof(returnType) == typeof(Complex))
+                return (returnType)Convert.ChangeType(new Complex(r, i), typeof(returnType));
+            else
+                return (returnType)Convert.ChangeType(r, typeof(returnType));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex ProductAll(Array arr)
+        public static Complex ProductAll(Array arr) => ProductAll<Complex>(arr);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static returnType ProductAll<returnType>(Array arr)
         {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_product_all(out r, out i, arr._ptr));
-            return new Complex(r, i);
+            if (typeof(returnType) == typeof(Complex))
+                return (returnType)Convert.ChangeType(new Complex(r, i), typeof(returnType));
+            else
+                return (returnType)Convert.ChangeType(r, typeof(returnType));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex ProductAll(Array arr, double nanval)
+        public static Complex ProductAll(Array arr, double nanval) => ProductAll<Complex>(arr, nanval);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static returnType ProductAll<returnType>(Array arr, double nanval)
         {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_product_nan_all(out r, out i, arr._ptr, nanval));
-            return new Complex(r, i);
+            if (typeof(returnType) == typeof(Complex))
+                return (returnType)Convert.ChangeType(new Complex(r, i), typeof(returnType));
+            else
+                return (returnType)Convert.ChangeType(r, typeof(returnType));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex MinAll(Array arr)
+        public static Complex MinAll(Array arr) => MinAll<Complex>(arr);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static returnType MinAll<returnType>(Array arr)
         {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_min_all(out r, out i, arr._ptr));
-            return new Complex(r, i);
+            if (typeof(returnType) == typeof(Complex))
+                return (returnType)Convert.ChangeType(new Complex(r, i), typeof(returnType));
+            else
+                return (returnType)Convert.ChangeType(r, typeof(returnType));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex MaxAll(Array arr)
+        public static Complex MaxAll(Array arr) => MaxAll<Complex>(arr);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static returnType MaxAll<returnType>(Array arr)
         {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_max_all(out r, out i, arr._ptr));
-            return new Complex(r, i);
+            if (typeof(returnType) == typeof(Complex))
+                return (returnType)Convert.ChangeType(new Complex(r, i), typeof(returnType));
+            else
+                return (returnType)Convert.ChangeType(r, typeof(returnType));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex AllTrueAll(Array arr)
+        public static bool AllTrueAll(Array arr)
         {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_all_true_all(out r, out i, arr._ptr));
-            return new Complex(r, i);
+            if (r == 0)
+                return false;
+            else
+                return true;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex AnyTrueAll(Array arr)
+        public static bool AnyTrueAll(Array arr)
         {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_any_true_all(out r, out i, arr._ptr));
-            return new Complex(r, i);
+            if (r == 0)
+                return false;
+            else
+                return true;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex CountAll(Array arr)
+        public static long CountAll(Array arr)
         {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_count_all(out r, out i, arr._ptr));
-            return new Complex(r, i);
+            return (long)r;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -204,19 +246,31 @@ namespace ArrayFire
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex MinAll(Array arr, out uint idx)
+        public static Complex MinAll(Array arr, out uint idx) => MinAll<Complex>(arr, out idx);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static returnType MinAll<returnType>(Array arr, out uint idx)
         {
             double r, i;
-            Internal.VERIFY(AFAlgorithm.af_imin_all(out r, out i, out idx ,arr._ptr));
-            return new Complex(r, i);
+            Internal.VERIFY(AFAlgorithm.af_imin_all(out r, out i, out idx, arr._ptr));
+            if (typeof(returnType) == typeof(Complex))
+                return (returnType)Convert.ChangeType(new Complex(r, i), typeof(returnType));
+            else
+                return (returnType)Convert.ChangeType(r, typeof(returnType));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Complex MaxAll(Array arr, out uint idx)
+        public static Complex MaxAll(Array arr, out uint idx) => MaxAll<Complex>(arr, out idx);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static returnType MaxAll<returnType>(Array arr, out uint idx)
         {
             double r, i;
             Internal.VERIFY(AFAlgorithm.af_imax_all(out r, out i, out idx, arr._ptr));
-            return new Complex(r, i);
+            if (typeof(returnType) == typeof(Complex))
+                return (returnType)Convert.ChangeType(new Complex(r, i), typeof(returnType));
+            else
+                return (returnType)Convert.ChangeType(r, typeof(returnType));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
