@@ -14,13 +14,13 @@
     - [Download binary installers](http://www.arrayfire.com/download)
     - [Build from source](https://github.com/arrayfire/arrayfire)
 
-- .NET Core 2.x or .NET Framework 4.x SDK:
+- .NET Core 2.2
 
     - [.NET Downloads](https://dotnet.microsoft.com/download)
 
-- Visual Studio 2015 or above.
+- Visual Studio 2017 or above.
 
-    - [Download Visual Studio 2017 Community Free](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx)
+    - [Download Visual Studio Community Free](https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs.aspx)
 
     
 
