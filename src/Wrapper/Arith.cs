@@ -152,6 +152,26 @@ namespace ArrayFire
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Array Ceil(Array arr) { IntPtr ptr; Internal.VERIFY(AFArith.af_ceil(out ptr, arr._ptr)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Not(Array arr) { IntPtr ptr; Internal.VERIFY(AFArith.af_not(out ptr, arr._ptr)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Bitnot(Array arr) { IntPtr ptr; Internal.VERIFY(AFArith.af_bitnot(out ptr, arr._ptr)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Imag(Array arr) { IntPtr ptr; Internal.VERIFY(AFArith.af_imag(out ptr, arr._ptr)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Real(Array arr) { IntPtr ptr; Internal.VERIFY(AFArith.af_real(out ptr, arr._ptr)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Sign(Array arr) { IntPtr ptr; Internal.VERIFY(AFArith.af_sign(out ptr, arr._ptr)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Isnan(Array arr) { IntPtr ptr; Internal.VERIFY(AFArith.af_isnan(out ptr, arr._ptr)); return new Array(ptr); }
+
+
 #endif
 
 #if _
@@ -169,6 +189,42 @@ namespace ArrayFire
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static Array Pow(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_pow(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array And(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_and(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Bitand(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_bitand(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Bitor(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_bitor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Bitxor(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_bitxor(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Eq(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_eq(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Ge(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_ge(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Gt(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_gt(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Le(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_le(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Lt(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_lt(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static Array Neq(Array lhs, Array rhs) { IntPtr ptr; Internal.VERIFY(AFArith.af_neq(out ptr, lhs._ptr, rhs._ptr, false)); return new Array(ptr); }
+
+
+
+
 #endif
 		#endregion
 	}
